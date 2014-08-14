@@ -4,14 +4,12 @@ SQL Server Integration Services Dashboard
 The purpose of this project is to provide a web-based, user-friendly, useful and nice looking SQL Server Integration Services Dashboard and a set of REST API to monitor execution of SQL Server Integration Services Packages.
 
 ***
-*** Version 
-***
+#Version 
 
 v 0.1 Alpha
 
 ***
-*** Platforms & Tools 
-***
+#Platforms & Tools 
 
 SSIS Dashboard has been built using:
 
@@ -25,8 +23,7 @@ The IDE used is the phenomenal Visual Studio 2013 with the Python addin "Python 
 https://pytools.codeplex.com/
 
 ***
-*** Installation Procedure
-***
+#Installation Procedure
 
 1. Install Python 2.7.5
 	Download Python 2.7.5 and install using default options from https://www.python.org/ website.
@@ -95,9 +92,7 @@ https://pytools.codeplex.com/
 	
 
 ***
-*** Current Release 
-***
+#Current Release 
 
 ***
-*** Roadmap 
-***
+#Roadmap 
