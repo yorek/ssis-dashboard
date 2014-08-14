@@ -24,7 +24,7 @@ https://pytools.codeplex.com/
 
 ###Install Python 
 Download Python 2.7.5 and install using default options from https://www.python.org/ website.
-At the end of the installation process you'll have a C:\Python27 folder
+At the end of the installation process you'll have a `C:\Python27` folder
 
 ###Install PIP
 Download and install the pip, one of the most used Python package managers. First of all the "get-pip.py" script has to be downloaded. It can be done using PowerShell
@@ -73,7 +73,7 @@ In order for SSIS Dashboard to run, the micro-framework Flask has to be installe
 cd c:\ssis-dashboard
 c:\python27\Scripts\pip.exe install -r requirements.txt
 ```
-provided that you downloaded the SSIS Dashboard source files into a directory named ssis-dashboard in the C: drive
+provided that you downloaded the SSIS Dashboard source files into a directory named `ssis-dashboard` in the `C:` drive
 	
 ###Run SSIS Dashboard
 After pip has finished its work, it's time to run the web app.  Again it's as easy as doing this:
@@ -82,9 +82,9 @@ cd c:\ssis-dashboard
 c:\Python27\python.exe app.py
 ```
 now you can open your preferred browser and point to 
-
+```
 http://locahost:5555/
-
+```
 or the correct address name, and voilà, SSIS Dashboard running for you.
 	
 ##Current Release 
