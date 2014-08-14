@@ -28,10 +28,10 @@ At the end of the installation process you'll have a C:\Python27 folder
 
 ###Install PIP
 Download and install the pip, one of the most used Python package managers. First of all the "get-pip.py" script has to be downloaded. It can be done using PowerShell
-
+```
 Invoke-WebRequest -Uri https://bootstrap.pypa.io/get-pip.py -OutFile C:\Python27\get-pip.py
-
-or cUrl or wget it fouy prefer (both are aliases for the above PowerShell command, if you don't really want to also install one of them)
+```
+or `curl` or `wget` it fouy prefer (both are aliases for the above PowerShell command, if you don't really want to also install one of them)
 Once downloaded, just run it:
 ```
 cd c:\Python27
@@ -55,16 +55,16 @@ Get the SSIS Dashboard source files from GitHub
 https://github.com/yorek/ssis-dashboard 
 
 For example store them into 
-
+```
 c:\ssis-dashboard
-
+```
 folder.
 	
 ###Configure SSIS Dashboard
 All you have to do put the correct connection string in the 
-
+```
 config.txt 
-
+```
 file. That's it.
 
 ###Install Requirements
@@ -83,9 +83,9 @@ c:\Python27\python.exe app.py
 ```
 now you can open your preferred browser and point to 
 
-http://<your-machine-ip>:5555/
+http://locahost:5555/
 
-and voilà, SSIS Dashboard running for you.
+or the correct address name, and voilà, SSIS Dashboard running for you.
 	
 ##Current Release 
 
