@@ -1,6 +1,6 @@
-DECLARE @projectNamePattern NVARCHAR(100) = '%';
-DECLARE @packageNamePattern NVARCHAR(100) = '%';
-DECLARE @executionIdFilter BIGINT = NULL;
+DECLARE @hourspan INT = ?;
+DECLARE @projectNamePattern NVARCHAR(100) = ?;
+DECLARE @statusFilter INT = ?;
 
 WITH cteWE AS
 (
@@ -55,9 +55,9 @@ LEFT OUTER JOIN
 WHERE 
 	e.project_name LIKE @projectNamePattern
 AND
-	e.package_name LIKE @packageNamePattern
+	e.start_time >= DATEADD(HOUR, -@hourspan, SYSDATETIME())
 AND
-	e.execution_id = ISNULL(@executionIdFilter, e.execution_id)
+	(e.[status] = @statusFilter or @statusFilter = 0)
 ORDER BY 
 	e.execution_id DESC
 OPTION

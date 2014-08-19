@@ -1,17 +1,17 @@
 <div class="col-lg-4">
-    <div class="panel panel-{{ tile_color(kpi_execution.errors) }}">
+    <div class="panel panel-{{ tile_color(package_kpi.errors) }}">
         <div class="panel-heading">
             <div class="row">
                 <div class="col-xs-3">
                     <i class="fa fa-bomb fa-5x"></i>
                 </div>
                 <div class="col-xs-9 text-right">
-                    <div class="huge">{{ kpi_execution.errors }}</div>
+                    <div class="huge">{{ package_kpi.errors }}</div>
                     <div>Errors</div>
                 </div>
             </div>
         </div>
-        <a href="/execution/{{ selected_execution_id }}/details/errors">
+        <a href="/execution/{{ environment['execution_id'] }}/details/errors">
             <div class="panel-footer">
                 <span class="pull-left">View Details</span>
                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -21,19 +21,19 @@
     </div>
 </div>
 <div class="col-lg-4">
-    <div class="panel panel-{{ tile_color(kpi_execution.memory_warnings) }}">
+    <div class="panel panel-{{ tile_color(package_kpi.memory_warnings) }}">
         <div class="panel-heading">
             <div class="row">
                 <div class="col-xs-3">
                     <i class="fa fa-bolt fa-5x"></i>
                 </div>
                 <div class="col-xs-9 text-right">
-                    <div class="huge">{{ kpi_execution.memory_warnings }}</div>
+                    <div class="huge">{{ package_kpi.memory_warnings }}</div>
                     <div>Memory Warinings</div>
                 </div>
             </div>
         </div>
-        <a href="/execution/{{ selected_execution_id }}/details/memory-warnings">
+        <a href="/execution/{{ environment['execution_id'] }}/details/memory-warnings">
             <div class="panel-footer">
                 <span class="pull-left">View Details</span>
                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -43,19 +43,19 @@
     </div>
 </div>
 <div class="col-lg-4">
-    <div class="panel panel-{{ tile_color(kpi_execution.duplicate_warnings) }}">
+    <div class="panel panel-{{ tile_color(package_kpi.duplicate_warnings) }}">
         <div class="panel-heading">
             <div class="row">
                 <div class="col-xs-3">
                     <i class="fa fa-magnet fa-5x"></i>
                 </div>
                 <div class="col-xs-9 text-right">
-                    <div class="huge">{{ kpi_execution.duplicate_warnings }}</div>
+                    <div class="huge">{{ package_kpi.duplicate_warnings }}</div>
                     <div>Duplicate Warnings</div>
                 </div>
             </div>
         </div>
-        <a href="/execution/{{ selected_execution_id }}/details/duplicate-warnings">
+        <a href="/execution/{{ environment['execution_id'] }}/details/duplicate-warnings">
             <div class="panel-footer">
                 <span class="pull-left">View Details</span>
                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

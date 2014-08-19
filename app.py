@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 from routes import *
 from processors import *
+from filters import *
 
 # Make the WSGI interface available at the top level so wfastcgi can get it.
 wsgi_app = app
@@ -17,5 +18,5 @@ if __name__ == '__main__':
         port = int(os.environ.get('SERVER_PORT', '5555'))
     except ValueError:
         port = 5555
-    app.run(host, port, threaded=True, debug=True)
+    app.run(host, port, threaded=False, debug=True)
 

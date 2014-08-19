@@ -9,6 +9,7 @@ __pycache__/
 .Python
 env/
 bin/
+obj/
 build/
 develop-eggs/
 dist/
@@ -21,6 +22,12 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+
+# Visual Studio
+ptvs_virtualenv_proxy.py
+SSIS-Dashboard-Web-Client.pyproj
+web.config
+web.debug.config
 
 # Installer logs
 pip-log.txt

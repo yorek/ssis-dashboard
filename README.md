@@ -5,12 +5,12 @@ The purpose of this project is to provide a web-based, user-friendly, useful and
 
 ##Version 
 
-v 0.2 Alpha
+v 0.4 Beta
 
 ##Current Release 
 
-In the current release, now REST interface has been implemented yet.
-Priority has been put to the web interface
+In the current release, no REST interface has been implemented yet.
+Priority has been put to the web interface. From the web interface the page with detailed and historical information on a single package is still missing.
 
 ##Roadmap 
 
@@ -21,8 +21,6 @@ REST API
 V 1.1
 Change Web Interface to use JQuery to invoke REST APIs to get data from DB. 
 Remove any direct query to the database from the website dashboard
-
-
 
 ##Platforms & Tools 
 

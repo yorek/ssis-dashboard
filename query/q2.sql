@@ -1,4 +1,4 @@
-DECLARE @projectNamePattern NVARCHAR(100) = '%'--EPSON-Data-%'
+DECLARE @projectNamePattern NVARCHAR(100) = '%'
 DECLARE @packageNamePattern NVARCHAR(100) = '%';
 DECLARE @executionIdFilter BIGINT = NULL;
 

@@ -7,7 +7,7 @@ class Configuration(object):
         _configFile.close()
         self.connectionString = _configData['connectionString']
         self.hourSpan = _configData['hourSpan']
-        self.projectNameFilter = _configData['projectNameFilter']
+   
 
 
 

@@ -3,56 +3,91 @@ from flask import render_template
 from flask import make_response
 from flask import jsonify
 from app import app
-
-import services
+from ssis import monitor
 
 # Set app version 
-version = "0.2 (beta)"
+version = "0.4 (beta)"
 
 # Define routes
 @app.route('/')
-@app.route('/home')
-def home():
-    return execution_status_full('', 0)
+def all():
+    return package(monitor.all, monitor.all, monitor.none)
 
 @app.route('/project/<project_name>')
-def home2(project_name):
-    return execution_status_full(project_name, 0)
+def project(project_name):
+    return package(project_name, monitor.all, monitor.none)
 
 @app.route('/execution/<int:execution_id>')
-def home3(execution_id):
-    return execution_status_full('', execution_id)
+def execution(execution_id):
+    return package(monitor.all, monitor.all, execution_id)
 
-def execution_status_full(project_name, execution_id):
-    project_name_pattern = project_name + '%'
-    execution_kpi = services.get_package_kpi(project_name_pattern, execution_id)
-    engine_kpi = services.get_engine_kpi(project_name_pattern)
-    execution_info = services.get_package_execution_info(execution_id)
-    execution_status = services.get_package_execution_status()
-    execution_events = services.get_package_execution_events(execution_id)
+@app.route('/project/<project_name>/status/<status>')
+def project_status(project_name, status):
+    return package(project_name, status, monitor.none)
+
+@app.route('/status/<status>')
+def status(status):
+    return package(monitor.all, status, monitor.none)
+
+@app.route('/project/<project_name>/status/<status>/execution/<int:execution_id>')
+def package(project_name, status, execution_id):
+    m = monitor()
+    m.project_name = project_name 
+    m.status = status
+    m.execution_id = execution_id
+
+    environment = {
+        'version': version,
+        'timestamp': datetime.now(),
+        'execution_id': execution_id,
+        'project_name': project_name,
+        'status': status
+        }
+
+    engine_kpi = m.get_engine_kpi()
+    engine_info = m.get_engine_info()
+    package_info = m.get_package_info()
+    package_kpi = m.get_package_kpi()
+    package_list = m.get_package_list()
+    package_executables = m.get_package_executables()
+
     return render_template(
         'index.html',
-        version = version,
-        timestamp = datetime.now(),
-        statuses = execution_status,
-        events = execution_events,
-        kpi_execution = execution_kpi,
-        kpi_engine = engine_kpi,
-        info_execution = execution_info,
-        selected_execution_id = execution_id
+        environment = environment,
+        engine_info = engine_info,
+        engine_kpi = engine_kpi,
+        package_info = package_info,
+        package_kpi = package_kpi,
+        package_list = package_list,
+        package_executables = package_executables
     )
 
 @app.route('/execution/<int:execution_id>/details/<detail_type>')
 def package_details(execution_id, detail_type):
-    execution_kpi = services.get_package_kpi('%', execution_id)
-    events = services.get_package_details(execution_id, detail_type)
+    m = monitor()
+    m.project_name = monitor.none 
+    m.status = monitor.none
+    m.execution_id = execution_id
+
+    environment = {
+        'version': version,
+        'timestamp': datetime.now(),
+        'execution_id': execution_id,
+        }
+
+    engine_kpi = m.get_engine_kpi()
+    engine_info = m.get_engine_info()
+    package_info = m.get_package_info()
+    package_kpi = m.get_package_kpi()
+    package_details = m.get_package_details(detail_type)
+
     return render_template(
         'details.html',
-        version = version,
-        timestamp = datetime.now(),
-        selected_execution_id = execution_id,
-        kpi_execution = execution_kpi,
-        events = events
+        environment = environment,
+        engine_info = engine_info,
+        package_info = package_info,
+        package_kpi = package_kpi,
+        package_details = package_details
     )
 
 #@app.route('/tasks', methods = ['GET'])
@@ -89,5 +124,13 @@ def package_details(execution_id, detail_type):
 
 @app.errorhandler(404)
 def not_found(error):
-    return make_response(jsonify( { 'error': 'Not found' } ), 404)
+    environment = {
+        'version': version,
+        'timestamp': datetime.now()
+        }
+
+    return render_template(
+        '404.html',
+        environment = environment        
+    )
 

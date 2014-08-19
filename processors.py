@@ -26,6 +26,7 @@ def utility_processor():
 def utility_processor():
     def row_status_class(status):
         result = {
+                0 : 'default',
                 1 : 'default',
                 2 : 'info',
                 3 : 'danger',

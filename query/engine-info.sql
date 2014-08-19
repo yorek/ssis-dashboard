@@ -1,0 +1,1 @@
+SELECT [server_name] = @@SERVERNAME, [service_name] = @@SERVICENAME
