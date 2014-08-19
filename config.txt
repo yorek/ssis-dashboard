@@ -1,4 +1,4 @@
 {
-    "connectionString": "DRIVER={SQL Server};SERVER=localhost;DATABASE=SSISDB;UID=dm;PWD=Passw0rd!",
+    "connectionString": "DRIVER={SQL Server};SERVER=localhost;DATABASE=SSISDB;UID=user;PWD=password",
     "hourSpan": 72
 }
