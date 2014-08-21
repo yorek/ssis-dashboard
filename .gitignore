@@ -29,6 +29,7 @@ SSIS-Dashboard-Web-Client.pyproj
 web.config
 web.debug.config
 Azure.pubxml
+Web.ssis-dashboard.config
 
 # Installer logs
 pip-log.txt
