@@ -12,6 +12,10 @@ cteE AS
 (
 	SELECT errors = COUNT(*) FROM [catalog].event_messages em WHERE em.operation_id IN (SELECT c.execution_id FROM cteEID c)  AND em.event_name = 'OnError'
 ),
+cteW AS
+(
+	SELECT warnings = COUNT(*) FROM [catalog].event_messages em WHERE em.operation_id IN (SELECT c.execution_id FROM cteEID c) AND em.event_name = 'OnWarning' 
+),
 cteDW AS
 (
 	SELECT duplicate_warnings = COUNT(*) FROM [catalog].event_messages em WHERE em.operation_id IN (SELECT c.execution_id FROM cteEID c) AND em.event_name = 'OnWarning' AND [message] LIKE '%duplicate%' 
@@ -23,6 +27,6 @@ cteMW AS
 SELECT
 	*
 FROM
-	cteE, cteDW, cteMW
+	cteE, cteW, cteDW, cteMW
 OPTION
 	(RECOMPILE)

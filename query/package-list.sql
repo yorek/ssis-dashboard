@@ -45,7 +45,7 @@ SELECT TOP 15
 					END,
 	start_time = format(e.start_time, 'yyyy-MM-dd HH:mm:ss'),
 	end_time = format(e.end_time, 'yyyy-MM-dd HH:mm:ss'),
-	elapsed_time_min = datediff(mi, e.start_time, e.end_time),
+	elapsed_time_min = datediff(ss, e.start_time, e.end_time) / 60.,
 	k.warnings,
 	k.errors
 FROM 

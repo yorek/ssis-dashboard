@@ -4,9 +4,10 @@ from flask import make_response
 from flask import jsonify
 from app import app
 from ssis import monitor
+import urllib
 
 # Set app version 
-version = "0.4 (beta)"
+version = "0.5.2 (beta)"
 
 # Define routes
 @app.route('/')
@@ -31,8 +32,10 @@ def status(status):
 
 @app.route('/project/<project_name>/status/<status>/execution/<int:execution_id>')
 def package(project_name, status, execution_id):
+    project_name = urllib.unquote(project_name) 
+
     m = monitor()
-    m.project_name = project_name 
+    m.project_name = project_name
     m.status = status
     m.execution_id = execution_id
 
@@ -65,8 +68,6 @@ def package(project_name, status, execution_id):
 @app.route('/execution/<int:execution_id>/details/<detail_type>')
 def package_details(execution_id, detail_type):
     m = monitor()
-    m.project_name = monitor.none 
-    m.status = monitor.none
     m.execution_id = execution_id
 
     environment = {
@@ -88,6 +89,35 @@ def package_details(execution_id, detail_type):
         package_info = package_info,
         package_kpi = package_kpi,
         package_details = package_details
+    )
+
+@app.route('/project/<project_name>/package/<package_name>')
+def package_history(project_name, package_name):
+    project_name = urllib.unquote(project_name) 
+    package_name = urllib.unquote(package_name) 
+
+    m = monitor()
+    m.project_name = project_name
+    m.package_name = package_name
+
+    environment = {
+        'version': version,
+        'timestamp': datetime.now()
+        }
+
+    engine_kpi = m.get_engine_kpi()
+    engine_info = m.get_engine_info()
+    package_info = m.get_package_info()
+    package_kpi = m.get_package_kpi()
+    package_history = m.get_package_history()
+
+    return render_template(
+        'history.html',
+        environment = environment,
+        engine_info = engine_info,
+        package_info = package_info,
+        package_kpi = package_kpi,
+        package_history = package_history
     )
 
 #@app.route('/tasks', methods = ['GET'])

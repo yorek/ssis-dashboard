@@ -28,6 +28,7 @@ ptvs_virtualenv_proxy.py
 SSIS-Dashboard-Web-Client.pyproj
 web.config
 web.debug.config
+Azure.pubxml
 
 # Installer logs
 pip-log.txt
