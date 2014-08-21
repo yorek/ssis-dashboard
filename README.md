@@ -4,6 +4,8 @@ SQL Server Integration Services Dashboard
 The purpose of this project is to provide a web-based, user-friendly, useful and nice looking SQL Server Integration Services Dashboard and a set of REST API to monitor execution of SQL Server Integration Services Packages.
 An online working demo version is available here: http://ssis-dashboard.azurewebsites.net/
 
+![v0 5 2](https://cloud.githubusercontent.com/assets/2612362/4003128/76e6869e-2973-11e4-9629-2bf45acd1141.png)
+
 ##Version 
 
 v 0.5.2 Beta
@@ -11,7 +13,10 @@ v 0.5.2 Beta
 ##Release Notes
 
 v 0.5.2 Beta
-Added support for "*" wildcard in project names. Now you can filter a specific project name using an url like: http://<yourserver>/project/MyPro*
+Added support for "\*" wildcard in project names. Now you can filter a specific project name using an url like: 
+```
+http://<yourserver>/project/MyPro*
+```
 Added initial support for Package Execution History. Just click on a package name and you'll see its latest 15 executions
 
 v 0.4 Beta
@@ -24,8 +29,8 @@ Priority has been put to the web interface. From the web interface the page with
 
 ##Supported Environments
 
-SQL Server 2012
-SQL Server 2014
+* SQL Server 2012
+* SQL Server 2014
 
 ##Roadmap 
 
