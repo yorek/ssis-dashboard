@@ -6,11 +6,11 @@ An online working demo version is available here: http://ssis-dashboard.azureweb
 
 ##Version 
 
-v 0.5.1 Beta
+v 0.5.2 Beta
 
 ##Release Notes
 
-v 0.5.1 Beta
+v 0.5.2 Beta
 Added support for "*" wildcard in project names. Now you can filter a specific project name using an url like: http://<yourserver>/project/MyPro*
 Added initial support for Package Execution History. Just click on a package name and you'll see its latest 15 executions
 
