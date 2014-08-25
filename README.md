@@ -1,26 +1,56 @@
-SQL Server Integration Services Dashboard
+SQL Server Integration Services Dashboard v 0.6 Beta
 =========================================
 
 The purpose of this project is to provide a web-based, user-friendly, useful and nice looking SQL Server Integration Services Dashboard and a set of REST API to monitor execution of SQL Server Integration Services Packages.
 
-##Version 
+An online working demo version is available here: http://ssis-dashboard.azurewebsites.net/
 
-v 0.4 Beta
+![Sample Screenshot](https://cloud.githubusercontent.com/assets/2612362/4003128/76e6869e-2973-11e4-9629-2bf45acd1141.png)
+
+##Release Notes
+
+###v 0.6 Beta
+
+* Updated Morris.js to v 0.5.1
+* Updated MetisMenu to v 1.1.1
+* Added information on "Child" Packages
+* Added more detail to the "Package Execution History" page. Also added an estimated end time / elapsed time for running packages, using a moving average of 7 steps.
+* Added navigation sidebar in the main page that shows available folders and projects
+* Added support for folders and project filtering
+* Changed configuration file in order to comply with Python/Flask standards
+* Cleaned Up code in order to follow Python best pratices (still a lot to do :))
+
+###v 0.5.2 Beta
+
+Added support for "\*" wildcard in project names. Now you can filter a specific project name using an url like: 
+```
+http://<yourserver>/project/MyPro*
+```
+Added initial support for Package Execution History. Just click on a package name and you'll see its latest 15 executions
+
+###v 0.4 Beta
+
+First public release
 
 ##Current Release 
 
 In the current release, no REST interface has been implemented yet.
 Priority has been put to the web interface. From the web interface the page with detailed and historical information on a single package is still missing.
 
+##Supported Environments
+
+* SQL Server 2012
+* SQL Server 2014
+
 ##Roadmap 
 
-v 1.0
-HTML5, Bootstrap-Based, Web Interface, directly querying database
-REST API
+##v 1.0
+* HTML5, Bootstrap-Based, Web Interface, directly querying database
+* REST API
 
-V 1.1
-Change Web Interface to use JQuery to invoke REST APIs to get data from DB. 
-Remove any direct query to the database from the website dashboard
+##v 1.1
+* Change Web Interface to use JQuery to invoke REST APIs to get data from DB. 
+* Remove any direct query to the database from the website dashboard
 
 ##Platforms & Tools 
 

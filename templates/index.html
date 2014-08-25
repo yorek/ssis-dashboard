@@ -1,15 +1,13 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="A SQL Server Integration Services monitoring dashboard">
+    <meta name="author" content="Davide Mauri">
 
-    <title>SQL Server Integration Services Monitoring Dashboard v {{ environment['version'] }}</title>
+    <title>SQL Server Integration Services Dashboard v {{ environment['version'] }}</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
@@ -26,7 +24,6 @@
     <!-- Main CSS -->
     <link href="/static/css/main.css" rel="stylesheet" type="text/css">
 
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -35,10 +32,12 @@
     <![endif]-->
 
 </head>
-
 <body>
-
     <div id="wrapper">
+        <!-- GitHub Badge -->
+        {% if config['AZURE'] == True %}
+        <a href="https://github.com/yorek/ssis-dashboard"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 2000;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+        {% endif %}
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -49,10 +48,33 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">SQL Server Integration Services Monitoring Dashboard v {{ environment['version'] }}</a>
+                <a class="navbar-brand" href="/">SQL Server Integration Services Dashboard v {{ environment['version'] }}</a>
             </div>
             <!-- /.navbar-header -->
 
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        {% for f in engine_folders %}
+                        <li>
+                            <a href="{{ url_for('folder', folder_name = f.name) }}"><i class="fa fa-folder fa-fw"></i> {{ f.name }}<span class="fa arrow"></span></a>
+                            {% for p in engine_projects if p['folder_id'] == f.folder_id %}
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ url_for('folder_project', folder_name = f.name, project_name = p.name) }}" alt="{{ p.description }}">{{ p.name }}</a>
+                                </li>
+                            </ul>
+                            {% endfor %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
         </nav>
 
         <!-- Page Content -->
@@ -68,7 +90,7 @@
 
             <!-- Executed Packages DataTable -->
             <!-- Packages Dashboard -->
-            {% if environment['execution_id'] != 'none' %}
+            {% if environment['execution_id'] != 'all' %}
             <div class="row">
                 <div class="col-lg-12">
                     <h2 class="page-header">Package: {{ package_info.folder_name }} \ {{ package_info.project_name }} \ {{ package_info.package_name }} (v.{{ package_info.project_lsn }})</h2>
@@ -80,10 +102,12 @@
             {% else %}
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="page-header">{{ environment['status'].title() }}{{ environment['project_name']|project }} Packages</h2>
+                    <h2 class="page-header">{{ environment['status'].title() }} Packages{{ environment['folder_name']|folder }}{{ environment['project_name']|project }}</h2>
                 </div>
             </div>
             {% endif %}
+
+            <!-- Executed Packages DataTable -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="table-responsive">
@@ -108,9 +132,9 @@
                                     {% else %}
                                 <tr class="info">
                                     {% endif %}
-                                    <td class="text-center"><a href="/project/{{ p.project_name }}/status/{{ environment['status'] }}/execution/{{ p.execution_id }}">{{ p.execution_id }}</a></td>
-                                    <td><a href="/project/{{ p.project_name }}/status/{{ environment['status'] }}">{{ p.project_name }}</a> (v.{{ p.project_lsn }})</td>
-                                    <td><a href="/project/{{ p.project_name }}/package/{{ p.package_name }}">{{ p.package_name }}</a></td>
+                                    <td class="text-center"><a href="{{ url_for('package', folder_name = environment['folder_name'], project_name = environment['project_name'], status = environment['status'], execution_id = p.execution_id) }}">{{ p.execution_id }}</a></td>
+                                    <td><a href="{{ url_for('folder_project_status', folder_name = environment['folder_name'], project_name = p.project_name, status = environment['status']) }}">{{ p.project_name }}</a> (v.{{ p.project_lsn }})</td>
+                                    <td><a href="{{ url_for('package_history', folder_name = environment['folder_name'], project_name = environment['project_name'], status = environment['status'], package_name = p.package_name) }}">{{ p.package_name }}</a></td>
                                     <td><span class="label label-{{ row_status_class(p.status) }}">{{ p.status_desc }}</span></td>
                                     <td>{{ p.start_time }}</td>
                                     <td>{{ p.end_time }}</td>
@@ -125,7 +149,47 @@
                 </div>
             </div>
 
-            <!-- Executed Package Events DataTable -->
+            <!-- Package Children DataTable -->
+            {% if package_children %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="page-header">Executed Children Packages</h2>
+                </div>
+                <div class="col-lg-12">
+                    <table id="children-datatable" class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="cell-small text-center">#</th>
+                                <th>Generator</th>
+                                <th>Package</th>
+                                <th>Source</th>
+                                <th>Execution Path</th>
+                                <th>Start Time</th>
+                                <th>Stop Time</th>
+                                <th>Elapsed (Min)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for p in package_children %}
+                            <tr>
+                                <td>{{ p.event_message_id }}</td>
+                                <td>{{ p.message_source_type }}</td>
+                                <td>{{ p.package_name }}</td>
+                                <td>{{ p.message_source_name }}</td>
+                                <td>{{ p.execution_path }}</td>
+                                <td>{{ p.pre_message_time }}</td>
+                                <td>{{ p.post_message_time }}</td>
+                                <td>{{ p.elapsed_time_min }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Package Events DataTable -->
+            {% if package_executables %}
             <div class="row">
                 <div class="col-lg-12">
                     <h2 class="page-header">Executables</h2>
@@ -159,7 +223,7 @@
                     </table>
                 </div>
             </div>
-
+            {% endif %}
         </div>
     </div>
 
@@ -179,31 +243,41 @@
     <!-- Custom Theme JavaScript -->
     <script src="/static/js/sb-admin-2.js"></script>
 
+    <!-- Page-Specific JavaScript -->
     <script>
-        $(document).ready(function () {
-
-            /* Initialize Datatables */
-            $('#package-datatable').dataTable({
-                "pageLength": 5,
-                "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
-                "order": [[0, "desc"]],
-                "aoColumnDefs": [{ "bSortable": true, "aTargets": [0] }],
-                "bFilter": false
-            });
-
-            $('#executions-datatable').dataTable({
-                "pageLength": 5,
-                "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
-                "order": [[0, "desc"]],
-                "aoColumnDefs": [{ "bSortable": true, "aTargets": [0] }],
-                "bFilter": false
-            });
-
-            $('.dataTables_filter input').attr('placeholder', 'Search')
+    $(document).ready(function () {
+        /* Set Menu Options */
+        $('#side-menu').metisMenu({
+            doubleTapToGo: true
         });
 
+        /* Initialize Datatables */
+        $('#package-datatable').dataTable({
+            "pageLength": 5,
+            "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+            "order": [[0, "desc"]],
+            "aoColumnDefs": [{ "bSortable": true, "aTargets": [0] }],
+            "bFilter": false
+        });
+
+        $('#children-datatable').dataTable({
+            "pageLength": 5,
+            "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+            "order": [[0, "desc"]],
+            "aoColumnDefs": [{ "bSortable": true, "aTargets": [0] }],
+            "bFilter": false
+        });
+
+        $('#executions-datatable').dataTable({
+            "pageLength": 5,
+            "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+            "order": [[0, "desc"]],
+            "aoColumnDefs": [{ "bSortable": true, "aTargets": [0] }],
+            "bFilter": false
+        });
+
+        $('.dataTables_filter input').attr('placeholder', 'Search')
+    });
     </script>
-
 </body>
-
 </html>

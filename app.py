@@ -18,5 +18,17 @@ if __name__ == '__main__':
         port = int(os.environ.get('SERVER_PORT', '5555'))
     except ValueError:
         port = 5555
-    app.run(host, port, threaded=False, debug=True)
-
+   
+    app.config.from_object('config')
+             
+    if not app.debug:
+        import logging
+        from logging.handlers import RotatingFileHandler
+        from logging import Formatter
+        file_handler = RotatingFileHandler('app.log', maxBytes = 10240, backupCount = 3, encoding = 'utf-8')
+        file_handler.setLevel(logging.WARNING)
+        file_handler.setFormatter(Formatter('%(asctime)s %(levelname)s: %(message)s ''[in %(pathname)s:%(lineno)d]'))
+        app.logger.addHandler(file_handler)
+    
+    app.run(host, port, threaded=True)
+    

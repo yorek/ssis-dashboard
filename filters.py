@@ -4,5 +4,12 @@ from app import app
 def project(text):
     result = ''
     if (text != 'all'):
-        result = ' "' + text + '"'
+        result = ' for "' + text + '"'
+    return result
+
+@app.template_filter('folder')
+def folder(text):
+    result = ''
+    if (text != 'all'):
+        result = ' in "' + text + '"'
     return result
