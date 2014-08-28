@@ -1,15 +1,13 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="A SQL ServerSQ Integration Services monitoring dashboard">
+    <meta name="author" content="Davide Mauri">
 
-    <title>SQL Server Integration Services Monitoring Dashboard v {{ environment['version'] }}</title>
+    <title>SQL Server Integration Services Dashboard v {{ environment['version'] }}</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
@@ -26,7 +24,6 @@
     <!-- Main CSS -->
     <link href="/static/css/main.css" rel="stylesheet" type="text/css">
 
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -35,10 +32,12 @@
     <![endif]-->
 
 </head>
-
 <body>
-
     <div id="wrapper">
+        <!-- GitHub Badge -->
+        {% if config['AZURE'] == True %}
+        <a href="https://github.com/yorek/ssis-dashboard"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 2000;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+        {% endif %}
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -49,21 +48,37 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">SQL Server Integration Services Monitoring Dashboard v {{ environment['version'] }}</a>
+                <a class="navbar-brand" href="/">SQL Server Integration Services Dashboard v {{ environment['version'] }}</a>
             </div>
             <!-- /.navbar-header -->
 
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>                       
+                        {% for f in engine_folders %}
+                        <li>
+                            <a href="/folder/{{ f.name}}"><i class="fa fa-folder fa-fw"></i> {{ f.name }}<span class="fa arrow"></span></a>
+                            {% for p in engine_projects if p['folder_id'] == f.folder_id %}
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/folder/{{ p.name }}" alt="{{ p.description }}">{{ p.name }}</a>
+                                </li>                                
+                            </ul>
+                            {% endfor %}
+                        </li>                   
+                        {% endfor %}
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+        <!-- /.navbar-static-side -->
         </nav>
 
         <!-- Page Content -->
-        <div id="page-wrapper" style="margin-left: 0px">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2 class="page-header">Route Not Yet Implemented...:(</h2>
-                    <h3>...but will come in a while. Just be patient and check often here: <a href="https://github.com/yorek/ssis-dashboard">SSIS Dashboard @ GitHub</a> :)</h3>
-                </div>
-            </div>
-        </div>
+        {% block page_content %}{% endblock %}
     </div>
 
     <!-- jQuery Version 1.11.0 -->
@@ -81,6 +96,8 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="/static/js/sb-admin-2.js"></script>
-</body>
 
+    <!-- Page-Specific JavaScript -->
+    {% block page_js %}{% endblock %}
+</body>
 </html>

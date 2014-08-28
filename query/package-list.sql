@@ -1,4 +1,5 @@
 DECLARE @hourspan INT = ?;
+DECLARE @folderNamePattern NVARCHAR(100) = ?;
 DECLARE @projectNamePattern NVARCHAR(100) = ?;
 DECLARE @statusFilter INT = ?;
 
@@ -32,20 +33,9 @@ SELECT TOP 15
 	e.package_name,
 	e.project_lsn,
 	e.status, 
-	status_desc = CASE e.status 
-						WHEN 1 THEN 'Created'
-						WHEN 2 THEN 'Running'
-						WHEN 3 THEN 'Cancelled'
-						WHEN 4 THEN 'Failed'
-						WHEN 5 THEN 'Pending'
-						WHEN 6 THEN 'Ended Unexpectedly'
-						WHEN 7 THEN 'Succeeded'
-						WHEN 8 THEN 'Stopping'
-						WHEN 9 THEN 'Completed'
-					END,
 	start_time = format(e.start_time, 'yyyy-MM-dd HH:mm:ss'),
 	end_time = format(e.end_time, 'yyyy-MM-dd HH:mm:ss'),
-	elapsed_time_min = datediff(ss, e.start_time, e.end_time) / 60.,
+	elapsed_time_min = format(datediff(ss, e.start_time, e.end_time) / 60., '#,0.00'),
 	k.warnings,
 	k.errors
 FROM 
@@ -53,6 +43,8 @@ FROM
 LEFT OUTER JOIN
 	cteKPI k ON e.execution_id = k.operation_id
 WHERE 
+	e.folder_name LIKE @folderNamePattern
+AND
 	e.project_name LIKE @projectNamePattern
 AND
 	e.start_time >= DATEADD(HOUR, -@hourspan, SYSDATETIME())

@@ -1,10 +1,12 @@
 DECLARE @hourspan INT = ?;
+DECLARE @folderNamePattern NVARCHAR(100) = ?;
 DECLARE @projectNamePattern NVARCHAR(100) = ?;
 DECLARE @executionId BIGINT = ?;
 
 WITH cteEID as
 (
 	SELECT execution_id FROM [catalog].executions e WHERE 
+	e.folder_name LIKE @folderNamePattern AND
 	e.project_name LIKE @projectNamePattern AND
 	(@executionId = -1 AND e.start_time >= DATEADD(HOUR, -@hourspan, SYSDATETIME())) OR (e.execution_id = @executionId)
 ),

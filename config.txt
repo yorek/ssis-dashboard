@@ -1,4 +1,0 @@
-{
-    "connectionString": "DRIVER={SQL Server};SERVER=localhost;DATABASE=tempdb;UID=dm;PWD=Passw0rd!",
-    "hourSpan": 72
-}

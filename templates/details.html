@@ -56,7 +56,7 @@
         </nav>
 
         <!-- Page Content -->
-        <div id="page-wrapper">
+        <div id="page-wrapper" style="margin-left: 0px">
             <div class="row">
                 {% include 'fragments/engine-info.html' %}
             </div>
@@ -87,12 +87,12 @@
                                     <th>Package</th>
                                     <th>Package Path</th>
                                     <th>Subcomponent Name</th>
-                                    <th>Execution Path</th>                                 
+                                    <th>Execution Path</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for d in package_details %}
-                                <tr>                                    
+                                <tr>
                                     <td>{{ d.message_time }}</td>
                                     <td>{{ d.message }}</td>
                                     <td>{{ d.package_name}}</td>

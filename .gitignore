@@ -25,11 +25,9 @@ var/
 
 # Visual Studio
 ptvs_virtualenv_proxy.py
-SSIS-Dashboard-Web-Client.pyproj
-web.config
-web.debug.config
-Azure.pubxml
-Web.ssis-dashboard.config
+*.pyproj
+*.pubxml
+*.config
 
 # Installer logs
 pip-log.txt
