@@ -1,4 +1,4 @@
-SQL Server Integration Services Dashboard v 0.6 Beta
+SQL Server Integration Services Dashboard v 0.6.1 Beta
 =========================================
 
 The purpose of this project is to provide a web-based, user-friendly, useful and nice looking SQL Server Integration Services Dashboard and a set of REST API to monitor execution of SQL Server Integration Services Packages.
@@ -9,7 +9,7 @@ An online working demo version is available here: http://ssis-dashboard.azureweb
 
 ##Release Notes
 
-###v 0.6 Beta
+###v 0.6.1 Beta
 
 * Updated Morris.js to v 0.5.1
 * Updated MetisMenu to v 1.1.1

@@ -1,26 +1,31 @@
-from flask import Flask
+"""
+This script runs the application using a development server.
+It contains the definition of routes and views for the application.
+"""
 
-# If you get an error on the next line on Python 3.4.0, change to: Flask('app')
-# where app matches the name of this file without the .py extension.
+from flask import Flask
 app = Flask(__name__)
 
+# Make the WSGI interface available at the top level so wfastcgi can get it.
+wsgi_app = app.wsgi_app
+
+# Configure App
+import config
+app.config.from_object(config)
+
+# Import Modules
 from routes import *
 from processors import *
 from filters import *
 
-# Make the WSGI interface available at the top level so wfastcgi can get it.
-wsgi_app = app
-
 if __name__ == '__main__':
     import os
-    host = os.environ.get('SERVER_HOST', 'localhost')
+    HOST = os.environ.get('SERVER_HOST', 'localhost')
     try:
-        port = int(os.environ.get('SERVER_PORT', '5555'))
+        PORT = int(os.environ.get('SERVER_PORT', '5555'))
     except ValueError:
-        port = 5555
-   
-    app.config.from_object('config')
-             
+        PORT = 5555
+
     if not app.debug:
         import logging
         from logging.handlers import RotatingFileHandler
@@ -30,5 +35,5 @@ if __name__ == '__main__':
         file_handler.setFormatter(Formatter('%(asctime)s %(levelname)s: %(message)s ''[in %(pathname)s:%(lineno)d]'))
         app.logger.addHandler(file_handler)
     
-    app.run(host, port, threaded=True)
+    app.run(HOST, PORT, threaded=True)
     
