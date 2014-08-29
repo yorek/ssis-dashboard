@@ -108,7 +108,7 @@ folder.
 ###Configure SSIS Dashboard
 All you have to do put the correct connection string in the 
 ```
-config.txt 
+config.py 
 ```
 file. That's it.
 
@@ -130,5 +130,16 @@ now you can open your preferred browser and point to
 ```
 http://locahost:5555/
 ```
-or the correct address name, and voilà, SSIS Dashboard running for you.
+and voilà, SSIS Dashboard running for you.
+
+If you want to be able to access the dashboard also from a different address than "localhost", you just have to set the SERVER_HOST environment variable, before running the app:
+
+```
+set SERVER_HOST=myserver.domain.name
+cd c:\ssis-dashboard
+c:\Python27\python.exe app.py
+```
+
+
+
 	
