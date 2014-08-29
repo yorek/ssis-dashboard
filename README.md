@@ -7,6 +7,8 @@ An online working demo version is available here: http://ssis-dashboard.azureweb
 
 ![Sample Screenshot](https://cloud.githubusercontent.com/assets/2612362/4003128/76e6869e-2973-11e4-9629-2bf45acd1141.png)
 
+Installation procedure is here: https://github.com/yorek/ssis-dashboard#installation-procedure
+
 ##Release Notes
 
 ###v 0.6.1 Beta
@@ -132,7 +134,7 @@ http://locahost:5555/
 ```
 and voilà, SSIS Dashboard running for you.
 
-If you want to be able to access the dashboard also from a different address than "localhost", you just have to set the SERVER_HOST environment variable, before running the app:
+If you want to be able to access the dashboard also from a different address than "localhost", you just have to set the `SERVER_HOST` environment variable, before running the app:
 
 ```
 set SERVER_HOST=myserver.domain.name
