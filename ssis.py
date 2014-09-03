@@ -29,7 +29,7 @@ class monitor(object):
     def __init__(self):        
         self.config = Configuration()      
         self.config.hourSpan = app.config["HOUR_SPAN"]
-        self.config.connectionString = app.config["CONNECTION_STRING"]
+        self.config.connectionString = app.config["CONNECTION_STRING"]["main"]
 
     def get_engine_info(self):
         result = self.__execute_query('engine-info.sql', True)       

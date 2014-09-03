@@ -1,4 +1,4 @@
-SQL Server Integration Services Dashboard v 0.6.1 Beta
+SQL Server Integration Services Dashboard v 0.6.2 Beta
 =========================================
 
 The purpose of this project is to provide a web-based, user-friendly, useful and nice looking SQL Server Integration Services Dashboard and a set of REST API to monitor execution of SQL Server Integration Services Packages.
@@ -7,7 +7,13 @@ An online working demo version is available here: http://ssis-dashboard.azureweb
 
 ![Sample Screenshot](https://cloud.githubusercontent.com/assets/2612362/4003128/76e6869e-2973-11e4-9629-2bf45acd1141.png)
 
+Installation procedure is here: https://github.com/yorek/ssis-dashboard#installation-procedure
+
 ##Release Notes
+
+###v 0.6.2 Beta
+
+* Included Environment informations in package list (Issue #5)
 
 ###v 0.6.1 Beta
 
@@ -108,7 +114,7 @@ folder.
 ###Configure SSIS Dashboard
 All you have to do put the correct connection string in the 
 ```
-config.txt 
+config.py 
 ```
 file. That's it.
 
@@ -130,5 +136,16 @@ now you can open your preferred browser and point to
 ```
 http://locahost:5555/
 ```
-or the correct address name, and voilà, SSIS Dashboard running for you.
+and voilà, SSIS Dashboard running for you.
+
+If you want to be able to access the dashboard also from a different address than "localhost", you just have to set the `SERVER_HOST` environment variable, before running the app:
+
+```
+set SERVER_HOST=myserver.domain.name
+cd c:\ssis-dashboard
+c:\Python27\python.exe app.py
+```
+
+
+
 	

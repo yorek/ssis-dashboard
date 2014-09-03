@@ -117,6 +117,7 @@
                                     <th class="cell-small text-center">#</th>
                                     <th>Project</th>
                                     <th>Package</th>
+                                    <th>Environment</th>
                                     <th><i class="fa fa-bolt"></i> Status</th>
                                     <th>Start Time</th>
                                     <th>Stop Time</th>
@@ -135,6 +136,7 @@
                                     <td class="text-center"><a href="{{ url_for('package', folder_name = environment['folder_name'], project_name = environment['project_name'], status = environment['status'], execution_id = p.execution_id) }}">{{ p.execution_id }}</a></td>
                                     <td><a href="{{ url_for('folder_project_status', folder_name = environment['folder_name'], project_name = p.project_name, status = environment['status']) }}">{{ p.project_name }}</a> (v.{{ p.project_lsn }})</td>
                                     <td><a href="{{ url_for('package_history', folder_name = environment['folder_name'], project_name = environment['project_name'], status = environment['status'], package_name = p.package_name) }}">{{ p.package_name }}</a></td>
+                                    <td>{{ p.environment }}</td>
                                     <td><span class="label label-{{ row_status_class(p.status) }}">{{ p.status_desc }}</span></td>
                                     <td>{{ p.start_time }}</td>
                                     <td>{{ p.end_time }}</td>
