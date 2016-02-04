@@ -1,4 +1,4 @@
-SQL Server Integration Services Dashboard v 0.6.2 Beta
+SQL Server Integration Services Dashboard v 0.6.3 Beta
 =========================================
 
 The purpose of this project is to provide a web-based, user-friendly, useful and nice looking SQL Server Integration Services Dashboard and a set of REST API to monitor execution of SQL Server Integration Services Packages.
@@ -11,9 +11,13 @@ Installation procedure is here: https://github.com/yorek/ssis-dashboard#installa
 
 ##Release Notes
 
-###v 0.6.2 Beta
+###v 0.6.3 Beta
 
+* Added first support to show/hide navigation panel
 * Included Environment informations in package list (Issue #5)
+* Upgraded to Font Awesome v 4.5.0
+* Upgraded to Bootstrap 3.3.6
+* Added refresh page button
 
 ###v 0.6.1 Beta
 
@@ -74,32 +78,9 @@ https://pytools.codeplex.com/
 ##Installation Procedure
 
 ###Install Python 
-Download Python 2.7.5 and install using default options from https://www.python.org/ website.
+Download Python 2.7.11 and install using default options from https://www.python.org/ website.
 At the end of the installation process you'll have a `C:\Python27` folder
 
-###Install PIP
-Download and install the pip, one of the most used Python package managers. First of all the "get-pip.py" script has to be downloaded. It can be done using PowerShell
-```
-Invoke-WebRequest -Uri https://bootstrap.pypa.io/get-pip.py -OutFile C:\Python27\get-pip.py
-```
-or `curl` or `wget` it fouy prefer (both are aliases for the above PowerShell command, if you don't really want to also install one of them)
-Once downloaded, just run it:
-```
-cd c:\Python27
-python get-pip.py
-```
-Done.
-If you want more detailed installation instruction, please refer to pip's main documentation:
-http://pip.readthedocs.org/en/latest/installing.html#install-pip
-
-
-###Install PyODBC
-Download PyODBC 3.0.7 (pyodbc-3.0.7.win32-py2.7.exe) from 
-	
-https://code.google.com/p/pyodbc/downloads/list 
-
-and install it using the default options.
-	
 ###Get SSIS Dashboard Files
 Get the SSIS Dashboard source files from GitHub
 
@@ -119,7 +100,7 @@ config.py
 file. That's it.
 
 ###Install Requirements
-In order for SSIS Dashboard to run, the micro-framework Flask has to be installed. It's easy as doing this
+In order for SSIS Dashboard to run, the micro-framework Flask and PyODBC have to be installed. It's easy as doing this
 ```
 cd c:\ssis-dashboard
 c:\python27\Scripts\pip.exe install -r requirements.txt

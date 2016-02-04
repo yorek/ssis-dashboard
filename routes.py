@@ -7,7 +7,7 @@ from ssis import monitor
 import urllib
 
 # Set app version 
-version = "0.6.2 (beta)"
+version = "0.6.3 (beta)"
 
 # Define routes
 @app.route('/')
