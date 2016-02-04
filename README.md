@@ -66,9 +66,9 @@ Priority has been put to the web interface. From the web interface the page with
 
 SSIS Dashboard has been built using:
 
-* Python 2.7.5: https://www.python.org/ 
+* Python 2.7.11: https://www.python.org/ 
 * Flask 0.10.1: http://flask.pocoo.org/ 
-* PyODBC 3.0.7: https://code.google.com/p/pyodbc/
+* PyODBC 3.0.10: https://github.com/mkleehammer/pyodbc
 * SB Admin 2 Template: http://startbootstrap.com/template-overviews/sb-admin-2/
 
 The IDE used is the phenomenal Visual Studio 2013 with the Python addin "Python Tools For Visual Studio"
