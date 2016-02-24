@@ -32,6 +32,7 @@ SELECT TOP 15
 	e.project_name,
 	e.package_name,
 	e.project_lsn,
+	environment = isnull(e.environment_folder_name, '') + isnull('\' + e.environment_name,  ''), 
 	e.status, 
 	start_time = format(e.start_time, 'yyyy-MM-dd HH:mm:ss'),
 	end_time = format(e.end_time, 'yyyy-MM-dd HH:mm:ss'),

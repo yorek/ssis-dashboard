@@ -19,7 +19,7 @@
     <link href="/static/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="/static/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- Main CSS -->
     <link href="/static/css/main.css" rel="stylesheet" type="text/css">
@@ -48,6 +48,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                <a id="collapse-navbar" class="navbar-btn btn navbar-left" style="margin-left:10px">
+                    <span class="pull-right"><i class="fa fa-navicon"></i></span>
+                </a>
                 <a class="navbar-brand" href="/">SQL Server Integration Services Dashboard v {{ environment['version'] }}</a>
             </div>
             <!-- /.navbar-header -->
@@ -115,9 +118,11 @@
                             <thead>
                                 <tr>
                                     <th class="cell-small text-center">#</th>
+                                    <th>Info</th>
                                     <th>Project</th>
                                     <th>Package</th>
-                                    <th><i class="fa fa-bolt"></i> Status</th>
+                                    <th>Environment</th>
+                                    <th>Status</th>
                                     <th>Start Time</th>
                                     <th>Stop Time</th>
                                     <th class="cell-small text-center">Elapsed (Min)</th>
@@ -129,12 +134,14 @@
                                 {% for p in package_list %}
                                 {% if environment['execution_id'] != p.execution_id %}
                                 <tr>
-                                    {% else %}
+                                {% else %}
                                 <tr class="info">
-                                    {% endif %}
+                                {% endif %}
                                     <td class="text-center"><a href="{{ url_for('package', folder_name = environment['folder_name'], project_name = environment['project_name'], status = environment['status'], execution_id = p.execution_id) }}">{{ p.execution_id }}</a></td>
+                                    <td><a href="#" title="Dataflow Information"><i class="fa fa-bar-chart"></i></a> <a href="#" title="Execution Values"><i class="fa fa-magic"></i></a></td>	
                                     <td><a href="{{ url_for('folder_project_status', folder_name = environment['folder_name'], project_name = p.project_name, status = environment['status']) }}">{{ p.project_name }}</a> (v.{{ p.project_lsn }})</td>
                                     <td><a href="{{ url_for('package_history', folder_name = environment['folder_name'], project_name = environment['project_name'], status = environment['status'], package_name = p.package_name) }}">{{ p.package_name }}</a></td>
+                                    <td>{{ p.environment }}</td>
                                     <td><span class="label label-{{ row_status_class(p.status) }}">{{ p.status_desc }}</span></td>
                                     <td>{{ p.start_time }}</td>
                                     <td>{{ p.end_time }}</td>
@@ -246,6 +253,21 @@
     <!-- Page-Specific JavaScript -->
     <script>
     $(document).ready(function () {
+        var c = 0;
+
+        $('#collapse-navbar').on('click', function (e)
+        {
+            if (c == 0) {
+                $('#page-wrapper').attr('style', 'margin-left: 0px;');
+                $('#side-menu').attr('style', 'display: none');
+                c = 1;
+            } else {
+                $('#page-wrapper').removeAttr('style');
+                $('#side-menu').removeAttr('style');
+                c = 0;
+            }
+        })
+
         /* Set Menu Options */
         $('#side-menu').metisMenu({
             doubleTapToGo: true
