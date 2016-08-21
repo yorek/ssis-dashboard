@@ -21,7 +21,7 @@ from filters import *
 if __name__ == '__main__':
     import os
     HOST = os.environ.get('SERVER_HOST', 'localhost')
-    PORT = app.config["PORT"]
+    PORT = app.config['PORT']
 
     if not app.debug:
         import logging
