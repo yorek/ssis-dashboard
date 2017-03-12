@@ -1,4 +1,4 @@
-from app import app
+from dashboard import app
 
 @app.context_processor
 def utility_processor():

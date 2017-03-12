@@ -1,4 +1,4 @@
-from app import app
+from dashboard import app
 
 @app.template_filter('project')
 def project(text):

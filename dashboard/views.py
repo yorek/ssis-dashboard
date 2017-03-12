@@ -1,13 +1,14 @@
 from datetime import datetime
+import urllib.parse
+
 from flask import render_template
 from flask import make_response
 from flask import jsonify
-from app import app
-from ssis import monitor
-import urllib
+from dashboard.ssis import monitor
+from dashboard import app
 
 # Set app version 
-version = "0.6.3 (beta)"
+version = "0.6.4 (beta)"
 
 # Define routes
 @app.route('/')
@@ -29,8 +30,8 @@ def folder(folder_name):
 @app.route('/<folder_name>/<project_name>/<status>/<int:execution_id>')
 @app.route('/folder/<folder_name>/project/<project_name>/status/<status>/execution/<int:execution_id>')
 def package(folder_name = monitor.all, project_name = monitor.all, status = monitor.all, execution_id = monitor.all):
-    folder_name = urllib.unquote(folder_name) 
-    project_name = urllib.unquote(project_name) 
+    folder_name = urllib.parse.unquote(folder_name) 
+    project_name = urllib.parse.unquote(project_name) 
 
     m = monitor()
     m.folder_name = folder_name
@@ -99,9 +100,9 @@ def package_details(execution_id, detail_type):
 
 @app.route('/folder/<folder_name>/project/<project_name>/status/<status>/package/<package_name>')
 def package_history(folder_name, project_name, status, package_name):
-    folder_name = urllib.unquote(folder_name) 
-    project_name = urllib.unquote(project_name) 
-    package_name = urllib.unquote(package_name) 
+    folder_name = urllib.parse.unquote(folder_name) 
+    project_name = urllib.parse.unquote(project_name) 
+    package_name = urllib.parse.unquote(package_name) 
 
     m = monitor()
     m.project_name = project_name

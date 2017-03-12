@@ -1,5 +1,5 @@
 import pyodbc
-from app import app
+from dashboard import app
 
 class Configuration:
     pass
@@ -131,7 +131,7 @@ class monitor(object):
 
     def __execute_query(self, query_file, onerow, *args):
         result = {}
-        file = open('query/' + query_file, 'r')
+        file = open('dashboard/query/' + query_file, 'r')
         query = file.read()
         cnxn = pyodbc.connect(self.config.connectionString)
         cursor = cnxn.cursor()

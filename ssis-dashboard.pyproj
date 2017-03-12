@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ba398c4e-4b64-4481-995e-94d1081ca936}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>runserver.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId>{e7076bcd-8449-47d5-8e58-a99d8af4cc95}</InterpreterId>
+    <InterpreterVersion>3.5</InterpreterVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="dashboard\query\engine-folders.sql" />
+    <Content Include="dashboard\query\engine-info.sql" />
+    <Content Include="dashboard\query\engine-kpi.sql" />
+    <Content Include="dashboard\query\engine-projects.sql" />
+    <Content Include="dashboard\query\package-children.sql" />
+    <Content Include="dashboard\query\package-details-duplicate-warnings.sql" />
+    <Content Include="dashboard\query\package-details-errors.sql" />
+    <Content Include="dashboard\query\package-details-memory-warnings.sql" />
+    <Content Include="dashboard\query\package-details-warnings.sql" />
+    <Content Include="dashboard\query\package-executables.sql" />
+    <Content Include="dashboard\query\package-history.sql" />
+    <Content Include="dashboard\query\package-info.sql" />
+    <Content Include="dashboard\query\package-kpi.sql" />
+    <Content Include="dashboard\query\package-list.sql" />
+    <Content Include="dashboard\static\css\bootstrap-theme.min.css" />
+    <Content Include="dashboard\static\css\bootstrap.min.css" />
+    <Content Include="dashboard\static\css\font-awesome.min.css" />
+    <Content Include="dashboard\static\css\main.css" />
+    <Content Include="dashboard\static\css\plugins\dataTables.bootstrap.css" />
+    <Content Include="dashboard\static\css\plugins\metisMenu\metisMenu.css" />
+    <Content Include="dashboard\static\css\plugins\metisMenu\metisMenu.min.css" />
+    <Content Include="dashboard\static\css\plugins\morris.css" />
+    <Content Include="dashboard\static\css\plugins\social-buttons.css" />
+    <Content Include="dashboard\static\css\plugins\timeline.css" />
+    <Content Include="dashboard\static\css\sb-admin-2.css" />
+    <Content Include="dashboard\static\fonts\fontawesome-webfont.svg" />
+    <Content Include="dashboard\static\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="dashboard\templates\404.html" />
+    <Content Include="dashboard\templates\details.html" />
+    <Content Include="dashboard\templates\fragments\engine-info.html" />
+    <Content Include="dashboard\templates\fragments\engine-kpi.html" />
+    <Content Include="dashboard\templates\fragments\package-kpi.html" />
+    <Content Include="dashboard\templates\history.html" />
+    <Content Include="dashboard\templates\index.html" />
+    <Content Include="dashboard\templates\_base.html" />
+    <Content Include="LICENSE" />
+    <Content Include="README.md" />
+    <Content Include="requirements.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="dashboard\config.py" />
+    <Compile Include="dashboard\filters.py" />
+    <Compile Include="dashboard\processors.py" />
+    <Compile Include="dashboard\views.py" />
+    <Compile Include="dashboard\ssis.py" />
+    <Compile Include="dashboard\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="runserver.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="dashboard\" />
+    <Folder Include="dashboard\query\" />
+    <Folder Include="dashboard\static\" />
+    <Folder Include="dashboard\static\css\" />
+    <Folder Include="dashboard\static\css\plugins\" />
+    <Folder Include="dashboard\static\css\plugins\metisMenu\" />
+    <Folder Include="dashboard\static\fonts\" />
+    <Folder Include="dashboard\templates\" />
+    <Folder Include="dashboard\templates\fragments\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env\">
+      <Id>{e7076bcd-8449-47d5-8e58-a99d8af4cc95}</Id>
+      <BaseInterpreter>{128e7662-9ce3-47fe-9982-ecef7c976869}</BaseInterpreter>
+      <Version>3.5</Version>
+      <Description>env (Anaconda3)</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <LibraryPath>Lib\</LibraryPath>
+      <PathEnvironmentVariable>
+      </PathEnvironmentVariable>
+      <Architecture>Amd64</Architecture>
+    </Interpreter>
+  </ItemGroup>
+  <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="!Exists($(PtvsTargetsFile))" />
+</Project>
