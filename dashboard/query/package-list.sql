@@ -1,33 +1,43 @@
-DECLARE @hourspan INT = ?;
-DECLARE @folderNamePattern NVARCHAR(100) = ?;
-DECLARE @projectNamePattern NVARCHAR(100) = ?;
-DECLARE @statusFilter INT = ?;
+declare @hourspan int = ?;
+declare @folderNamePattern nvarchar(100) = ?;
+declare @projectNamePattern nvarchar(100) = ?;
+declare @statusFilter int = ?;
 
-WITH cteWE AS
+with cteWE as
 (
-	SELECT 
-		operation_id, event_name, event_count = COUNT(*)
-	FROM 
+	select 
+		operation_id, event_name, event_count = count(*)
+	from 
 		[catalog].event_messages 
-	WHERE
-		event_name IN ('OnError', 'OnWarning')
-	GROUP BY
+	where
+		event_name in ('OnError', 'OnWarning')
+	group by
 		operation_id, event_name
 ),
-cteKPI AS
+cteKPI as
 (
-	SELECT
+	select
 		operation_id,
 		[errors] = OnError,
 		warnings = OnWarning
-	FROM
+	from
 		cteWE
-	PIVOT
+	pivot
 		(
-			SUM(event_count) FOR event_name IN (OnError, OnWarning)
+			sum(event_count) for event_name in (OnError, OnWarning)
 		) p
+),
+cteLoglevel as
+(
+	select
+		execution_id,
+		cast(parameter_value as int) as logging_level
+	from
+		[catalog].[execution_parameter_values]
+	where
+		parameter_name = 'LOGGING_LEVEL'
 )
-SELECT TOP 15
+select top 15
 	e.execution_id, 
 	e.project_name,
 	e.package_name,
@@ -38,21 +48,24 @@ SELECT TOP 15
 	end_time = format(e.end_time, 'yyyy-MM-dd HH:mm:ss'),
 	elapsed_time_min = format(datediff(ss, e.start_time, e.end_time) / 60., '#,0.00'),
 	k.warnings,
-	k.errors
-FROM 
+	k.errors,
+	l.logging_level
+from 
 	[catalog].executions e 
-LEFT OUTER JOIN
-	cteKPI k ON e.execution_id = k.operation_id
-WHERE 
-	e.folder_name LIKE @folderNamePattern
-AND
-	e.project_name LIKE @projectNamePattern
-AND
-	e.start_time >= DATEADD(HOUR, -@hourspan, SYSDATETIME())
-AND
+left outer join
+	cteKPI k on e.execution_id = k.operation_id
+left outer join
+	cteLoglevel l on e.execution_id = l.execution_id
+where 
+	e.folder_name like @folderNamePattern
+and
+	e.project_name like @projectNamePattern
+and
+	e.start_time >= dateadd(hour, -@hourspan, sysdatetime())
+and
 	(e.[status] = @statusFilter or @statusFilter = 0)
-ORDER BY 
-	e.execution_id DESC
-OPTION
-	(RECOMPILE)
+order by 
+	e.execution_id desc
+option
+	(recompile)
 ;

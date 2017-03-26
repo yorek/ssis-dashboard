@@ -1,0 +1,14 @@
+current_app
+LocalProxy
+_lookup_req_object
+_lookup_app_object
+request
+_app_ctx_stack
+partial
+g
+_find_app
+LocalStack
+_request_ctx_stack
+_request_ctx_err_msg
+_app_ctx_err_msg
+session

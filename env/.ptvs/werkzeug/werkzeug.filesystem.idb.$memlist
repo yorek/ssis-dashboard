@@ -1,0 +1,8 @@
+has_likely_buggy_unicode_filesystem
+_warned_about_filesystem_encoding
+codecs
+_is_ascii_encoding
+BrokenFilesystemWarning
+get_filesystem_encoding
+sys
+warnings

@@ -1,0 +1,16 @@
+sys
+supports_lone_surrogates
+memoize
+unicode_literals
+text_type
+_x
+isSurrogatePair
+absolute_import
+__all__
+surrogatePairToCodepoint
+division
+MethodDispatcher
+default_etree
+ModuleType
+PY27
+moduleFactoryFactory

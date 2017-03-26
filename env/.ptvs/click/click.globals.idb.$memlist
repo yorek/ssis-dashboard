@@ -1,0 +1,6 @@
+_local
+resolve_color_default
+push_context
+pop_context
+local
+get_current_context

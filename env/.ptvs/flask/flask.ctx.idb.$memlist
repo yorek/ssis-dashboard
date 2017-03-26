@@ -1,0 +1,17 @@
+sys
+has_request_context
+_sentinel
+update_wrapper
+HTTPException
+AppContext
+appcontext_popped
+_request_ctx_stack
+_AppCtxGlobals
+reraise
+RequestContext
+appcontext_pushed
+copy_current_request_context
+has_app_context
+_app_ctx_stack
+after_this_request
+BROKEN_PYPY_CTXMGR_EXIT

@@ -1,0 +1,8 @@
+PY2
+absolute_import
+division
+print_function
+PY3
+string_types
+sys
+with_metaclass

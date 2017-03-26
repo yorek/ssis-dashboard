@@ -1,0 +1,13 @@
+InternetExplorerFix
+unquote
+PathInfoFromRequestUriFix
+CGIRootFix
+ProxyFix
+UserAgent
+parse_set_header
+parse_options_header
+LighttpdCGIRootFix
+Headers
+HeaderRewriterFix
+ResponseCacheControl
+parse_cache_control_header

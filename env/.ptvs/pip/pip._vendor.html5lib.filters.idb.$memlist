@@ -1,0 +1,7 @@
+lint
+inject_meta_charset
+whitespace
+base
+alphabeticalattributes
+optionaltags
+sanitizer

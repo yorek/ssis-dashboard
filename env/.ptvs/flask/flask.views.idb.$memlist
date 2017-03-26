@@ -1,0 +1,6 @@
+MethodViewType
+request
+http_method_funcs
+View
+with_metaclass
+MethodView

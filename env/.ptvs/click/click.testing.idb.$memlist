@@ -1,0 +1,15 @@
+PY2
+make_input_stream
+os
+Result
+clickpkg
+tempfile
+iteritems
+_find_binary_reader
+shutil
+CliRunner
+StringIO
+io
+contextlib
+sys
+EchoingStdin

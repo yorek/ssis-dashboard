@@ -1,0 +1,12 @@
+logger
+RequirementParseError
+pkg_resources
+absolute_import
+logging
+re
+COMMENT_RE
+canonicalize_name
+get_installed_distributions
+freeze
+pip
+InstallRequirement

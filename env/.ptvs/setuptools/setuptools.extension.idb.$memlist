@@ -1,0 +1,10 @@
+distutils
+_Extension
+_have_cython
+map
+functools
+get_unpatched
+Extension
+have_pyrex
+re
+Library

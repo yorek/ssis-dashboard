@@ -1,0 +1,10 @@
+decoding_table
+IncrementalDecoder
+unicode_literals
+IncrementalEncoder
+codecs
+StreamWriter
+encoding_table
+StreamReader
+Codec
+codec_info

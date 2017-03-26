@@ -1,0 +1,13 @@
+PY2
+imap
+TemplateAssertionError
+text_type
+implements_to_string
+TemplateSyntaxError
+FilterArgumentError
+TemplateNotFound
+SecurityError
+TemplatesNotFound
+TemplateRuntimeError
+UndefinedError
+TemplateError

@@ -1,0 +1,11 @@
+BuiltinImporter
+MultibyteIncrementalDecoder
+MultibyteIncrementalEncoder
+MultibyteStreamReader
+MultibyteStreamWriter
+__create_codec
+__doc__
+__loader__
+__name__
+__package__
+__spec__

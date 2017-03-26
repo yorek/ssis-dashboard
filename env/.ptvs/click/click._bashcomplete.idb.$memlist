@@ -1,0 +1,13 @@
+bashcomplete
+get_choices
+split_arg_string
+os
+MultiCommand
+re
+_invalid_ident_char_re
+resolve_ctx
+get_completion_script
+do_complete
+Option
+COMPLETION_SCRIPT
+echo

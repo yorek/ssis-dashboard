@@ -1,0 +1,11 @@
+PY2
+copy
+update_wrapper
+LocalProxy
+implements_bool
+LocalStack
+ClosingIterator
+get_ident
+Local
+LocalManager
+release_local

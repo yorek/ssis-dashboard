@@ -1,0 +1,12 @@
+walk_revctrl
+pkg_resources
+six
+log
+io
+sdist
+_default_revctrl
+sdist_add_defaults
+os
+orig
+contextlib
+sys

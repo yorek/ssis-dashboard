@@ -1,0 +1,15 @@
+PY2
+_Mgr
+BROKEN_PYPY_CTXMGR_EXIT
+text_type
+itervalues
+iterkeys
+reraise
+iteritems
+_identity
+integer_types
+StringIO
+implements_to_string
+string_types
+sys
+with_metaclass

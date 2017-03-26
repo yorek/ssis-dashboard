@@ -1,0 +1,14 @@
+appcontext_pushed
+appcontext_tearing_down
+request_tearing_down
+request_finished
+signals_available
+before_render_template
+_FakeSignal
+got_request_exception
+message_flashed
+appcontext_popped
+template_rendered
+Namespace
+request_started
+_signals
