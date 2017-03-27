@@ -1,4 +1,5 @@
 from dashboard import app
+from distutils.util import strtobool
 
 @app.context_processor
 def utility_processor():
@@ -51,3 +52,12 @@ def utility_processor():
                 }
         return result[status]
     return dict(executable_status_class = executable_status_class)
+
+@app.context_processor
+def utility_processor():
+    def boolean_to_check(value):
+        result = ""
+        if (value == 1):
+            result = "check-"
+        return result
+    return dict(boolean_to_check = boolean_to_check)

@@ -28,6 +28,7 @@
     <Content Include="dashboard\query\package-children.sql" />
     <Content Include="dashboard\query\package-details-duplicate-warnings.sql" />
     <Content Include="dashboard\query\package-details-errors.sql" />
+    <Content Include="dashboard\query\package-details-execution-values.sql" />
     <Content Include="dashboard\query\package-details-memory-warnings.sql" />
     <Content Include="dashboard\query\package-details-warnings.sql" />
     <Content Include="dashboard\query\package-executables.sql" />
@@ -71,6 +72,7 @@
     <Content Include="dashboard\templates\fragments\menu.html" />
     <Content Include="dashboard\templates\fragments\package-kpi.html" />
     <Content Include="dashboard\templates\history.html" />
+    <Content Include="dashboard\templates\execution-values.html" />
     <Content Include="dashboard\templates\index.html" />
     <Content Include="dashboard\templates\_base.html" />
     <Content Include="LICENSE" />

@@ -59,7 +59,7 @@
                     <tr class="info">
                         {% endif %}
                         <td class="text-center"><a href="{{ url_for('package', folder_name = environment['folder_name'], project_name = environment['project_name'], status = environment['status'], execution_id = p.execution_id) }}">{{ p.execution_id }}</a></td>
-                        <td><a href="#" title="Dataflow Information"><i class="fa fa-bar-chart"></i></a> <a href="#" title="Execution Values"><i class="fa fa-magic"></i></a></td>
+                        <td class="text-center"><a href="#" title="Dataflow Information"><i class="fa fa-bar-chart"></i></a> <a href="{{ url_for('package_execution_values', execution_id = p.execution_id) }}" title="Execution Values"><i class="fa fa-magic"></i></a></td>
                         <td><a href="{{ url_for('folder_project_status', folder_name = environment['folder_name'], project_name = p.project_name, status = environment['status']) }}">{{ p.project_name }}</a> (v.{{ p.project_lsn }})</td>
                         <td><a href="{{ url_for('package_history', folder_name = environment['folder_name'], project_name = environment['project_name'], status = environment['status'], package_name = p.package_name) }}">{{ p.package_name }}</a></td>
                         <td>{{ p.environment }}</td>
@@ -69,7 +69,7 @@
                         <td>{{ p.elapsed_time_min }}</td>
                         <td>{{ p.warnings }}</td>
                         <td>{{ p.errors }}</td>
-                        <td>{{ p.logging_level }}</td>
+                        <td>{{ p.logging_level_desc }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
