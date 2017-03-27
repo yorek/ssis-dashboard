@@ -24,7 +24,7 @@ def utility_processor():
 
 @app.context_processor
 def utility_processor():
-    def row_status_class(status):
+    def package_status_class(status):
         result = {
                 0 : 'default',
                 1 : 'default',
@@ -38,4 +38,16 @@ def utility_processor():
                 9 : 'default' 
                 }
         return result[status]
-    return dict(row_status_class = row_status_class)
+    return dict(package_status_class = package_status_class)
+
+@app.context_processor
+def utility_processor():
+    def executable_status_class(status):
+        result = {
+                0 : 'success',
+                1 : 'danger',
+                2 : 'default',
+                3 : 'danger'              
+                }
+        return result[status]
+    return dict(executable_status_class = executable_status_class)
