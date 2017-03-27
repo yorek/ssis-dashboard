@@ -28,6 +28,7 @@
     <Content Include="dashboard\query\package-children.sql" />
     <Content Include="dashboard\query\package-details-duplicate-warnings.sql" />
     <Content Include="dashboard\query\package-details-errors.sql" />
+    <Content Include="dashboard\query\package-details-execution-overrides.sql" />
     <Content Include="dashboard\query\package-details-execution-values.sql" />
     <Content Include="dashboard\query\package-details-memory-warnings.sql" />
     <Content Include="dashboard\query\package-details-warnings.sql" />
