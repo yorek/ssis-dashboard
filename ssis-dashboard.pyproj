@@ -48,7 +48,7 @@
     <Content Include="dashboard\static\fonts\fontawesome-webfont.svg" />
     <Content Include="dashboard\static\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="dashboard\static\js\bootstrap.min.js" />
-    <Content Include="dashboard\static\js\jquery-1.11.0.js" />
+    <Content Include="dashboard\static\js\jquery-2.2.4.min.js" />
     <Content Include="dashboard\static\js\plugins\dataTables\dataTables.bootstrap.js" />
     <Content Include="dashboard\static\js\plugins\dataTables\jquery.dataTables.js" />
     <Content Include="dashboard\static\js\plugins\flot\excanvas.min.js" />
