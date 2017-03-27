@@ -12,8 +12,8 @@
     <!-- Bootstrap Core CSS -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- SmartMenu CSS -->
-    <link href="/static/css/plugins/smartMenu/addons/bootstrap/jquery.smartmenus.bootstrap.min.css" rel="stylesheet">
+    <!-- SmartMenuy CSS -->
+    <link href="/static/css/plugins/smartMenu/addons/bootstrap/jquery.smartmenus.bootstrap.css" rel="stylesheet" />
 
     <!-- Custom CSS -->
     <link href="/static/css/sb-admin-2.css" rel="stylesheet">
@@ -23,6 +23,9 @@
 
     <!-- Main CSS -->
     <link href="/static/css/main.css" rel="stylesheet" type="text/css">
+
+    <!-- Morris Charts CSS -->
+    <link href="/static/css/plugins/morris.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,56 +43,25 @@
         {% endif %}
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">SQL Server Integration Services Dashboard v {{ environment['version'] }}</a>
-            </div>
-            <!-- /.navbar-header -->
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>                       
-                        {% for f in engine_folders %}
-                        <li>
-                            <a href="/folder/{{ f.name}}"><i class="fa fa-folder fa-fw"></i> {{ f.name }}<span class="fa arrow"></span></a>
-                            {% for p in engine_projects if p['folder_id'] == f.folder_id %}
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="/folder/{{ p.name }}" alt="{{ p.description }}">{{ p.name }}</a>
-                                </li>                                
-                            </ul>
-                            {% endfor %}
-                        </li>                   
-                        {% endfor %}
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-        <!-- /.navbar-static-side -->
-        </nav>
+        {% include 'fragments/menu.html' %}
 
         <!-- Page Content -->
-        {% block page_content %}{% endblock %}
+        {% block content %}{% endblock %}
     </div>
 
-    <!-- jQuery Version 1.11.0 -->
-    <script src="/static/js/jquery-1.11.0.js"></script>
+    <!-- jQuery Version -->
+    <script src="/static/js/jquery-2.2.4.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/static/js/bootstrap.min.js"></script>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="/static/js/plugins/smartMenu/jquery.smartmenu.min.css"></script>
+    <!-- SmartMenus Menu Plugin JavaScript -->
+    <script src="/static/js/plugins/smartMenu/jquery.smartmenus.min.js"></script>
     <script src="/static/js/plugins/smartMenu/addons/bootstrap/jquery.smartmenus.bootstrap.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="/static/js/plugins/morris/raphael.min.js"></script>
+    <script src="/static/js/plugins/morris/morris.min.js"></script>
 
     <!-- DataTables JavaScript -->
     <script src="/static/js/plugins/dataTables/jquery.dataTables.js"></script>
@@ -99,6 +71,6 @@
     <script src="/static/js/sb-admin-2.js"></script>
 
     <!-- Page-Specific JavaScript -->
-    {% block page_js %}{% endblock %}
+    {% block pagejs %}{% endblock %}
 </body>
 </html>

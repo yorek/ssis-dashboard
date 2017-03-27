@@ -167,6 +167,10 @@ def package_history(folder_name, project_name, status, package_name):
 
 @app.errorhandler(404)
 def not_found(error):
+    m = monitor()
+
+    engine_info = m.get_engine_info()
+
     environment = {
         'version': version,
         'timestamp': datetime.now()
@@ -174,6 +178,7 @@ def not_found(error):
 
     return render_template(
         '404.html',
-        environment = environment        
+        environment = environment,
+        engine_info = engine_info
     )
 

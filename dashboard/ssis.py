@@ -7,7 +7,14 @@ class Configuration:
 class monitor(object):  
     all = 'all'
 
-    status_codes = {
+    executable_status_codes = {
+            0: 'success',
+            1: 'failure',
+            2: 'completion',
+            3: 'cancelled'
+            }
+
+    package_status_codes = {
             0: 'all',
             1: 'created',
             2: 'running',
@@ -52,10 +59,10 @@ class monitor(object):
             self.__get_proper_name_filter(self.project_name)
             )
 
-        proper_result = dict([v,0] for v in self.status_codes.values())
+        proper_result = dict([v,0] for v in self.package_status_codes.values())
               
         for r in result: 
-            proper_result[self.status_codes[r['status_code']]] = r['status_count']
+            proper_result[self.package_status_codes[r['status_code']]] = r['status_count']
 
         return proper_result
 
@@ -77,11 +84,11 @@ class monitor(object):
             self.config.hourSpan, 
             self.__get_proper_name_filter(self.folder_name), 
             self.__get_proper_name_filter(self.project_name), 
-            self.__get_proper_status_code(self.status)
+            self.__get_proper_package_status_code(self.status)
             )
 
         for r in result:
-            r["status_desc"] = self.status_codes[r["status"]].title()
+            r["status_desc"] = self.package_status_codes[r["status"]].title()
 
         return result
     
@@ -99,6 +106,10 @@ class monitor(object):
             False,
             self.__get_proper_execution_id(self.execution_id)
             )
+
+        for r in result:
+            r["status_desc"] = self.executable_status_codes[r["status"]].title()
+
         return result
 
     def get_package_children(self):
@@ -158,11 +169,11 @@ class monitor(object):
             result = name_filter.replace('*', '%')
         return result
 
-    def __get_proper_status_code(self, status):
+    def __get_proper_package_status_code(self, status):
         result = 0
         status_descriptions = {}
-        for k in self.status_codes.keys():
-            status_descriptions[self.status_codes[k]] = k 
+        for k in self.package_status_codes.keys():
+            status_descriptions[self.package_status_codes[k]] = k 
 
         return status_descriptions[status]
 
