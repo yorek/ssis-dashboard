@@ -113,6 +113,7 @@ def package_execution_values(execution_id):
     package_info = m.get_package_info()
     package_kpi = m.get_package_kpi()    
     package_parameters = m.get_package_details("execution-values")
+    package_overrides = m.get_package_details("execution-overrides")
 
     return render_template(
         'execution-values.html',
@@ -120,7 +121,8 @@ def package_execution_values(execution_id):
         engine_info = engine_info,
         package_info = package_info,
         package_kpi = package_kpi,
-        package_parameters = package_parameters
+        package_parameters = package_parameters,
+        package_overrides = package_overrides
     )
 
 @app.route('/folder/<folder_name>/project/<project_name>/status/<status>/package/<package_name>')

@@ -49,6 +49,33 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header">Property Overrides</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div>
+                <table id="overrides-datatable" class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Path</th>
+                            <th>value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in package_overrides %}
+                        <tr>
+                            <td>{{ p.property_path }}</td>
+                            <td>{{ p.property_value}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
 </div>
 
@@ -65,6 +92,13 @@
                 "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
                 "order": [[0, "asc"], [1, "asc"]],
                 "aoColumnDefs": [{ "bSortable": true, "aTargets": [0] }]               
+            });
+
+            $('#overrides-datatable').dataTable({
+                "pageLength": 10,
+                "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+                "order": [[0, "asc"]],
+                "aoColumnDefs": [{ "bSortable": true, "aTargets": [0] }]
             });
 
             $('.dataTables_filter input').attr('placeholder', 'Search')
