@@ -7,12 +7,19 @@ class Configuration:
 class monitor(object):  
     all = 'all'
 
+    logging_codes = {
+        0: 'None',
+        1: 'Basic',
+        2: 'Performance',
+        3: 'Verbose'        
+    }
+
     executable_status_codes = {
             0: 'success',
             1: 'failure',
             2: 'completion',
             3: 'cancelled'
-            }
+        }
 
     package_status_codes = {
             0: 'all',
@@ -25,7 +32,7 @@ class monitor(object):
             7: 'succeeded',
             8: 'stopping',
             9: 'completed'
-            }
+        }
 
     folder_name = all
     project_name = all
@@ -89,6 +96,7 @@ class monitor(object):
 
         for r in result:
             r["status_desc"] = self.package_status_codes[r["status"]].title()
+            r["logging_level_desc"] = self.logging_codes[r["logging_level"]].title()
 
         return result
     
@@ -144,6 +152,7 @@ class monitor(object):
         result = {}
         file = open('dashboard/query/' + query_file, 'r')
         query = file.read()
+        file.close()
         cnxn = pyodbc.connect(self.config.connectionString)
         cursor = cnxn.cursor()
         cursor.execute(query, args)
@@ -155,6 +164,7 @@ class monitor(object):
             if (row != None):
                 result = dict(zip([cd[0] for cd in cursor.description], row))
         cursor.close()
+        
         return result
 
     def __get_proper_execution_id(self, execution_id):
