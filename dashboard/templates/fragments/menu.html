@@ -15,21 +15,21 @@
             <!-- Left nav -->
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#">{{ engine_info.server_name}} <span class="caret"></span></a>
-                    {% for f in engine_folders %}
+                    <a href="/">{{ engine_info.server_name}} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
+                        {% for f in engine_folders %}
                         <li>
-                            <a href="{{ url_for('folder', folder_name = f.name) }}"><i class="fa fa-folder fa-fw"></i> {{ f.name }}<span class="fa arrow"></span></a>
-                            {% for p in engine_projects if p['folder_id'] == f.folder_id %}
+                            <a href="{{ url_for('folder', folder_name = f.name) }}">{{ f.name }} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
+                                {% for p in engine_projects if p['folder_id'] == f.folder_id %}
                                 <li>
                                     <a href="{{ url_for('folder_project', folder_name = f.name, project_name = p.name) }}" alt="{{ p.description }}">{{ p.name }}</a>
                                 </li>
+                                {% endfor %}
                             </ul>
                         </li>
                         {% endfor %}
                     </ul>
-                    {% endfor %}
                 </li>
             </ul>
 
