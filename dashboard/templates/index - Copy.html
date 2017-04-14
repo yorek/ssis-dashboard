@@ -14,22 +14,22 @@
 
     <!-- Executed Packages DataTable -->
     <!-- Packages Dashboard -->
+    {% if environment['execution_id'] != 'all' %}
     <div class="row">
         <div class="col-lg-12">
-            <h2>{{ environment['status'].title() }} Packages{{ environment['folder_name']|folder }}{{ environment['project_name']|project }}</h2>
+            <h2 class="page-header">Package: {{ package_info.folder_name }} \ {{ package_info.project_name }} \ {{ package_info.package_name }} (v.{{ package_info.project_lsn }})</h2>
         </div>
     </div>
-    
-    <!-- Chart -->
+    <div class="row">
+        {% include 'fragments/package-kpi.html' %}
+    </div>
+    {% else %}
     <div class="row">
         <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div id="bar-chart" style="height: 200px;"></div>
-                </div>
-            </div>
+            <h2 class="page-header">{{ environment['status'].title() }} Packages{{ environment['folder_name']|folder }}{{ environment['project_name']|project }}</h2>
         </div>
     </div>
+    {% endif %}
 
     <!-- Executed Packages DataTable -->
     <div class="row">
@@ -188,23 +188,6 @@
 
             $('.dataTables_filter input').attr('placeholder', 'Search')
         });
-
-        $(document).ready(function () {
-            Morris.Area({
-                element: 'bar-chart',
-                data: [
-                {% for e in execution_statistics|sort(attribute='calendar_date') %}
-                    { d: '{{ e.calendar_date }}', c: '{{ e.created_packages }}', r: '{{ e.executed_packages }}', s: '{{ e.succeeded_packages }}', f: '{{ e.failed_packages }}' },
-                {% endfor %}
-                ],
-                xkey: 'd',
-                ykeys: ['c', 'r', 's', 'f'],
-                labels: ['Created:', 'Executed:', 'Succeeded:', 'Failed:'],
-				parseTime: true,
-				resize: true,
-                behaveLikeLine: true
-            });
-        })
 </script>
 
 {% endblock %}

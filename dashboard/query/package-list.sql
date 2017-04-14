@@ -61,7 +61,7 @@ where
 and
 	e.project_name like @projectNamePattern
 and
-	e.start_time >= dateadd(hour, -@hourspan, sysdatetime())
+	e.created_time >= dateadd(hour, -@hourspan, sysdatetime())
 and
 	(e.[status] = @statusFilter or @statusFilter = 0)
 order by 

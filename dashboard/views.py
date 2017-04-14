@@ -52,6 +52,7 @@ def package(folder_name = monitor.all, project_name = monitor.all, status = moni
     engine_projects = m.get_engine_projects()
     engine_kpi = m.get_engine_kpi()
     engine_info = m.get_engine_info()
+    execution_statistics = m.get_execution_statistics()
     package_info = m.get_package_info()
     package_kpi = m.get_package_kpi()
     package_list = m.get_package_list()
@@ -65,6 +66,7 @@ def package(folder_name = monitor.all, project_name = monitor.all, status = moni
         engine_projects = engine_projects,
         engine_info = engine_info,
         engine_kpi = engine_kpi,
+        execution_statistics = execution_statistics,
         package_info = package_info,
         package_kpi = package_kpi,
         package_list = package_list,

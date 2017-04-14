@@ -11,7 +11,8 @@ class monitor(object):
         0: 'None',
         1: 'Basic',
         2: 'Performance',
-        3: 'Verbose'        
+        3: 'Verbose',
+        4: 'Runtime Lineage'
     }
 
     executable_status_codes = {
@@ -72,6 +73,13 @@ class monitor(object):
             proper_result[self.package_status_codes[r['status_code']]] = r['status_count']
 
         return proper_result
+
+    def get_execution_statistics(self):
+        result = self.__execute_query('executions-statistics.sql',
+            False,
+            self.config.hourSpan
+            )                
+        return result
 
     def get_package_kpi(self):
         result = self.__execute_query(
