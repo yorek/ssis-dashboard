@@ -36,6 +36,7 @@
     <Content Include="dashboard\query\package-history.sql" />
     <Content Include="dashboard\query\package-info.sql" />
     <Content Include="dashboard\query\package-kpi.sql" />
+    <Content Include="dashboard\query\executions-statistics.sql" />
     <Content Include="dashboard\query\package-list.sql" />
     <Content Include="dashboard\static\css\bootstrap-theme.min.css" />
     <Content Include="dashboard\static\css\bootstrap.min.css" />
@@ -74,6 +75,7 @@
     <Content Include="dashboard\templates\fragments\package-kpi.html" />
     <Content Include="dashboard\templates\history.html" />
     <Content Include="dashboard\templates\execution-values.html" />
+    <Content Include="dashboard\templates\index - Copy.html" />
     <Content Include="dashboard\templates\index.html" />
     <Content Include="dashboard\templates\_base.html" />
     <Content Include="LICENSE" />

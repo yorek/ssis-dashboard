@@ -4,5 +4,5 @@ CONNECTION_STRING = {
                     "main": "DRIVER={SQL Server};SERVER=localhost;DATABASE=SSISDB;UID=;PWD=",
                     "datarace": "DRIVER={SQL Server};SERVER=***REMOVED***;DATABASE=SSISDB;UID=dmauri;PWD=***REMOVED***"
                     }
-HOUR_SPAN = 72
+HOUR_SPAN = 360
 PORT = 5555
