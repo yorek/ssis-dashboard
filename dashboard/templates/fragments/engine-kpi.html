@@ -1,0 +1,136 @@
+<!-- Executed -->
+<div class="col-lg-2">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-bolt fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">{{ engine_kpi.all }}</div>
+                    <div>Executed</div>
+                </div>
+            </div>
+        </div>
+        <a href="/folder/{{ environment['folder_name'] }}/project/{{ environment['project_name'] }}/status/all">
+            <div class="panel-footer">
+                <span class="pull-left">View</span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+</div>
+<!-- Running Packages -->
+<div class="col-lg-2">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-paper-plane-o fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">{{ engine_kpi.running }}</div>
+                    <div>Running</div>
+                </div>
+            </div>
+        </div>
+        <a href="/folder/{{ environment['folder_name'] }}/project/{{ environment['project_name'] }}/status/running">
+            <div class="panel-footer">
+                <span class="pull-left">View</span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+</div><!-- Cancelled -->
+<div class="col-lg-2">
+    <div class="panel panel-{{ tile_color(engine_kpi.cancelled ) }}">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-eject fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">{{ engine_kpi.cancelled }}</div>
+                    <div>Cancelled</div>
+                </div>
+            </div>
+        </div>
+        <a href="/folder/{{ environment['folder_name'] }}/project/{{ environment['project_name'] }}/status/cancelled">
+            <div class="panel-footer">
+                <span class="pull-left">View</span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+</div>
+<!-- Failed -->
+<div class="col-lg-2">
+    <div class="panel panel-{{ tile_color(engine_kpi.failed ) }}">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-bomb fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">{{ engine_kpi.failed }}</div>
+                    <div>Failed</div>
+                </div>
+            </div>
+        </div>
+        <a href="/folder/{{ environment['folder_name'] }}/project/{{ environment['project_name'] }}/status/failed">
+            <div class="panel-footer">
+                <span class="pull-left">View</span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+</div>
+<!-- Halted -->
+<div class="col-lg-2">
+    <div class="panel panel-{{ tile_color(engine_kpi.halted ) }}">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-stop fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">{{ engine_kpi.halted }}</div>
+                    <div>Halted</div>
+                </div>
+            </div>
+        </div>
+        <a href="/folder/{{ environment['folder_name'] }}/project/{{ environment['project_name'] }}/status/halted">
+            <div class="panel-footer">
+                <span class="pull-left">View</span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="col-lg-2">
+    <div class="panel panel-{{ tile_color_inv(engine_kpi.succeeded ) }}">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-thumbs-up fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">{{ engine_kpi.succeeded }}</div>
+                    <div>Succeeded</div>
+                </div>
+            </div>
+        </div>
+        <a href="/folder/{{ environment['folder_name'] }}/project/{{ environment['project_name'] }}/status/succeeded">
+            <div class="panel-footer">
+                <span class="pull-left">View</span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+</div>
