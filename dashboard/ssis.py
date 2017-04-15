@@ -12,7 +12,8 @@ class monitor(object):
         1: 'Basic',
         2: 'Performance',
         3: 'Verbose',
-        4: 'Runtime Lineage'
+        4: 'Runtime Lineage',
+        100: 'Custom'
     }
 
     executable_status_codes = {

@@ -11,7 +11,7 @@
                 </div>
             </div>
         </div>
-        <a href="/execution/{{ environment['execution_id'] }}/details/errors">
+        <a href="{{ url_for('package_events', execution_id = environment['execution_id'], detail_type = "errors") }}">
             <div class="panel-footer">
                 <span class="pull-left">View Details</span>
                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -33,7 +33,7 @@
                 </div>
             </div>
         </div>
-        <a href="/execution/{{ environment['execution_id'] }}/details/warnings">
+        <a href="{{ url_for('package_events', execution_id = environment['execution_id'], detail_type = "warnings") }}">
             <div class="panel-footer">
                 <span class="pull-left">View Details</span>
                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -55,7 +55,7 @@
                 </div>
             </div>
         </div>
-        <a href="/execution/{{ environment['execution_id'] }}/details/memory-warnings">
+        <a href="{{ url_for('package_events', execution_id = environment['execution_id'], detail_type = "memory-warnings") }}">
             <div class="panel-footer">
                 <span class="pull-left">View Details</span>
                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -77,7 +77,7 @@
                 </div>
             </div>
         </div>
-        <a href="/execution/{{ environment['execution_id'] }}/details/duplicate-warnings">
+        <a href="{{ url_for('package_events', execution_id = environment['execution_id'], detail_type = "duplicate-warnings") }}">
             <div class="panel-footer">
                 <span class="pull-left">View Details</span>
                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

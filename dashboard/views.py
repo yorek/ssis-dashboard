@@ -68,25 +68,15 @@ def folder_project(folder_name, project_name):
 def folder(folder_name):
     return packages(folder_name = folder_name)
 
-
 @app.route('/execution/<int:execution_id>')
-def execution(execution_id):
-    folder_name = urllib.parse.unquote(folder_name) 
-    project_name = urllib.parse.unquote(project_name) 
-
+def execution(execution_id = 0):
     m = monitor()
-    m.folder_name = folder_name
-    m.project_name = project_name
-    m.status = status
     m.execution_id = execution_id
 
     environment = {
         'version': version,
         'timestamp': datetime.now(),
-        'execution_id': execution_id,
-        'project_name': project_name,
-        'folder_name': folder_name,
-        'status': status
+        'execution_id': execution_id
         }
 
     engine_folders = m.get_engine_folders()
@@ -115,8 +105,8 @@ def execution(execution_id):
         package_executables = package_executables
     )
 
-@app.route('/execution/<int:execution_id>/details/<detail_type>')
-def package_details(execution_id, detail_type):
+@app.route('/execution/<int:execution_id>/events/<detail_type>')
+def package_events(execution_id, detail_type):
     m = monitor()
     m.execution_id = execution_id
 
@@ -133,7 +123,7 @@ def package_details(execution_id, detail_type):
     package_details = m.get_package_details(detail_type)
 
     return render_template(
-        'details.html',
+        'execution-events.html',
         environment = environment,
         engine_info = engine_info,
         package_info = package_info,
@@ -168,7 +158,7 @@ def package_execution_values(execution_id):
         package_overrides = package_overrides
     )
 
-@app.route('/folder/<folder_name>/project/<project_name>/status/<status>/package/<package_name>')
+@app.route('/history/<folder_name>/project/<project_name>/status/<status>/package/<package_name>')
 def package_history(folder_name, project_name, status, package_name):
     folder_name = urllib.parse.unquote(folder_name) 
     project_name = urllib.parse.unquote(project_name) 
