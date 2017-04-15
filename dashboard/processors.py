@@ -5,8 +5,8 @@ from distutils.util import strtobool
 def utility_processor():
     def tile_color(kpi_value):
         result = 'green'
-        if (kpi_value == 0) :
-            result = 'primary' 
+        #if (kpi_value == 0) :
+        #    result = 'primary' 
         if (kpi_value > 0) :
             result = 'red' 
         return result
@@ -16,8 +16,8 @@ def utility_processor():
 def utility_processor():
     def tile_color_inv(kpi_value):
         result = 'green'
-        if (kpi_value == 0) :
-            result = 'primary' 
+        #if (kpi_value == 0) :
+        #    result = 'primary' 
         if (kpi_value < 0) :
             result = 'red' 
         return result

@@ -1,7 +1,7 @@
 import pyodbc
 from dashboard import app
 
-class Configuration:
+class configuration:
     pass
 
 class monitor(object):  
@@ -43,7 +43,7 @@ class monitor(object):
     execution_id = all
     
     def __init__(self):        
-        self.config = Configuration()      
+        self.config = configuration()      
         self.config.hourSpan = app.config["HOUR_SPAN"]
         self.config.connectionString = app.config["CONNECTION_STRING"]["main"]
 
@@ -135,6 +135,15 @@ class monitor(object):
     def get_package_children(self):
         result = self.__execute_query(
             'package-children.sql', 
+            False,
+            self.__get_proper_execution_id(self.execution_id)
+            )
+        return result
+
+    def get_package_events(self, event_type):
+        query_file = 'package-events-' + event_type + '.sql'
+        result = self.__execute_query(
+            query_file, 
             False,
             self.__get_proper_execution_id(self.execution_id)
             )
