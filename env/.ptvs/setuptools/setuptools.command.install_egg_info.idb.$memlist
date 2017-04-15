@@ -1,8 +1,0 @@
-install_egg_info
-os
-log
-Command
-pkg_resources
-dir_util
-unpack_archive
-namespaces

@@ -1,9 +1,0 @@
-glibc_version_string
-ctypes
-absolute_import
-check_glibc_version
-platform
-warnings
-libc_ver
-have_compatible_glibc
-re

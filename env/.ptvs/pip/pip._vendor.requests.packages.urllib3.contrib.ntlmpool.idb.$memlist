@@ -1,7 +1,0 @@
-HTTPSConnection
-HTTPSConnectionPool
-log
-absolute_import
-getLogger
-NTLMConnectionPool
-ntlm
