@@ -1,0 +1,112 @@
+﻿{% extends "_base.html" %}
+
+{% block content %}
+
+<div id="page-wrapper">
+    <div class="row">
+        {% include 'fragments/engine-info.html' %}
+    </div>
+
+    <!-- Package Dashboard -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header">Package: {{ package_info.folder_name }} \ {{ package_info.project_name }} \ {{ package_info.package_name }} \ {{ environment.execution_id }} (v.{{ package_info.project_lsn }})</h2>
+        </div>
+    </div>
+    <div class="row">
+        {% include 'fragments/package-kpi.html' %}
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header">Parameters Values</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div>
+                <table id="parameter-datatable" class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Parameter</th>
+                            <th>Value</th>
+                            <th width="100">Set</th>
+                            <th>Override</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in package_parameters %}
+                        <tr>
+                            <td>{{ p.object_type_desc }}</td>
+                            <td>{{ p.parameter_name }}</td>
+                            <td>{{ p.parameter_value}}</td>
+                            <td class="text-center"><i class="fa fa-{{ boolean_to_check(p.value_set) }}square-o" aria-hidden="true"></i></td>
+                            <td class="text-center"><i class="fa fa-{{ boolean_to_check(p.runtime_override) }}square-o" aria-hidden="true"></i></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header">Property Overrides</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div>
+                <table id="overrides-datatable" class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Path</th>
+                            <th>value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in package_overrides %}
+                        <tr>
+                            <td>{{ p.property_path }}</td>
+                            <td>{{ p.property_value}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block pagejs %}
+
+<script>
+        $(document).ready(function () {
+
+            /* Initialize Datatables */
+            $('#parameter-datatable').dataTable({
+                "pageLength": 10,
+                "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+                "order": [[0, "asc"], [1, "asc"]],
+                "aoColumnDefs": [{ "bSortable": true, "aTargets": [0] }],
+                "bFilter": false
+            });
+
+            $('#overrides-datatable').dataTable({
+                "pageLength": 10,
+                "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+                "order": [[0, "asc"]],
+                "aoColumnDefs": [{ "bSortable": true, "aTargets": [0] }],
+                "bFilter": false
+            });
+
+            $('.dataTables_filter input').attr('placeholder', 'Search')
+        });
+
+</script>
+
+
+{% endblock %}

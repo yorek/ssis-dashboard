@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ba398c4e-4b64-4481-995e-94d1081ca936}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>runserver.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId>{4026c308-3c08-4798-bc6c-68a37b8f5511}</InterpreterId>
+    <InterpreterVersion>3.5</InterpreterVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="dashboard\query\engine-folders.sql" />
+    <Content Include="dashboard\query\engine-info.sql" />
+    <Content Include="dashboard\query\engine-kpi.sql" />
+    <Content Include="dashboard\query\engine-projects.sql" />
+    <Content Include="dashboard\query\package-children.sql" />
+    <Content Include="dashboard\query\package-events-duplicate-warnings.sql" />
+    <Content Include="dashboard\query\package-events-all.sql" />
+    <Content Include="dashboard\query\package-events-errors.sql" />
+    <Content Include="dashboard\query\package-details-execution-overrides.sql" />
+    <Content Include="dashboard\query\package-details-execution-values.sql" />
+    <Content Include="dashboard\query\package-events-memory-warnings.sql" />
+    <Content Include="dashboard\query\package-events-warnings.sql" />
+    <Content Include="dashboard\query\package-executables.sql" />
+    <Content Include="dashboard\query\package-history.sql" />
+    <Content Include="dashboard\query\package-info.sql" />
+    <Content Include="dashboard\query\package-kpi.sql" />
+    <Content Include="dashboard\query\executions-statistics.sql" />
+    <Content Include="dashboard\query\package-list.sql" />
+    <Content Include="dashboard\static\css\bootstrap-theme.min.css" />
+    <Content Include="dashboard\static\css\bootstrap.min.css" />
+    <Content Include="dashboard\static\css\font-awesome.min.css" />
+    <Content Include="dashboard\static\css\main.css" />
+    <Content Include="dashboard\static\css\plugins\dataTables.bootstrap.css" />
+    <Content Include="dashboard\static\css\plugins\morris.css" />
+    <Content Include="dashboard\static\css\plugins\smartMenu\addons\bootstrap\jquery.smartmenus.bootstrap.css" />
+    <Content Include="dashboard\static\css\plugins\social-buttons.css" />
+    <Content Include="dashboard\static\css\plugins\timeline.css" />
+    <Content Include="dashboard\static\css\sb-admin-2.css" />
+    <Content Include="dashboard\static\fonts\fontawesome-webfont.svg" />
+    <Content Include="dashboard\static\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="dashboard\static\js\bootstrap.min.js" />
+    <Content Include="dashboard\static\js\jquery-2.2.4.min.js" />
+    <Content Include="dashboard\static\js\plugins\dataTables\dataTables.bootstrap.js" />
+    <Content Include="dashboard\static\js\plugins\dataTables\jquery.dataTables.js" />
+    <Content Include="dashboard\static\js\plugins\flot\excanvas.min.js" />
+    <Content Include="dashboard\static\js\plugins\flot\flot-data.js" />
+    <Content Include="dashboard\static\js\plugins\flot\jquery.flot.js" />
+    <Content Include="dashboard\static\js\plugins\flot\jquery.flot.pie.js" />
+    <Content Include="dashboard\static\js\plugins\flot\jquery.flot.resize.js" />
+    <Content Include="dashboard\static\js\plugins\flot\jquery.flot.tooltip.min.js" />
+    <Content Include="dashboard\static\js\plugins\morris\morris.js" />
+    <Content Include="dashboard\static\js\plugins\morris\morris.min.js" />
+    <Content Include="dashboard\static\js\plugins\morris\raphael.min.js" />
+    <Content Include="dashboard\static\js\plugins\smartMenu\addons\bootstrap\jquery.smartmenus.bootstrap.min.js" />
+    <Content Include="dashboard\static\js\plugins\smartMenu\addons\keyboard\jquery.smartmenus.keyboard.min.js" />
+    <Content Include="dashboard\static\js\plugins\smartMenu\jquery.smartmenus.min.js" />
+    <Content Include="dashboard\static\js\sb-admin-2.js" />
+    <Content Include="dashboard\templates\404.html" />
+    <Content Include="dashboard\templates\execution-events.html" />
+    <Content Include="dashboard\templates\fragments\engine-info.html" />
+    <Content Include="dashboard\templates\fragments\engine-kpi.html" />
+    <Content Include="dashboard\templates\fragments\menu.html" />
+    <Content Include="dashboard\templates\fragments\package-kpi.html" />
+    <Content Include="dashboard\templates\execution-history.html" />
+    <Content Include="dashboard\templates\execution-values.html" />
+    <Content Include="dashboard\templates\execution-details.html" />
+    <Content Include="dashboard\templates\index.html" />
+    <Content Include="dashboard\templates\_base.html" />
+    <Content Include="LICENSE" />
+    <Content Include="README.md" />
+    <Content Include="requirements.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="dashboard\config.py" />
+    <Compile Include="dashboard\filters.py" />
+    <Compile Include="dashboard\processors.py" />
+    <Compile Include="dashboard\views.py" />
+    <Compile Include="dashboard\ssis.py" />
+    <Compile Include="dashboard\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="runserver.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="dashboard\" />
+    <Folder Include="dashboard\query\" />
+    <Folder Include="dashboard\static\" />
+    <Folder Include="dashboard\static\css\" />
+    <Folder Include="dashboard\static\css\plugins\" />
+    <Folder Include="dashboard\static\css\plugins\smartMenu\" />
+    <Folder Include="dashboard\static\css\plugins\smartMenu\addons\" />
+    <Folder Include="dashboard\static\css\plugins\smartMenu\addons\bootstrap\" />
+    <Folder Include="dashboard\static\fonts\" />
+    <Folder Include="dashboard\static\js\" />
+    <Folder Include="dashboard\static\js\plugins\" />
+    <Folder Include="dashboard\static\js\plugins\dataTables\" />
+    <Folder Include="dashboard\static\js\plugins\flot\" />
+    <Folder Include="dashboard\static\js\plugins\morris\" />
+    <Folder Include="dashboard\static\js\plugins\smartMenu\" />
+    <Folder Include="dashboard\static\js\plugins\smartMenu\addons\" />
+    <Folder Include="dashboard\static\js\plugins\smartMenu\addons\bootstrap\" />
+    <Folder Include="dashboard\static\js\plugins\smartMenu\addons\keyboard\" />
+    <Folder Include="dashboard\templates\" />
+    <Folder Include="dashboard\templates\fragments\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env\">
+      <Id>{4026c308-3c08-4798-bc6c-68a37b8f5511}</Id>
+      <BaseInterpreter>{128e7662-9ce3-47fe-9982-ecef7c976869}</BaseInterpreter>
+      <Version>3.5</Version>
+      <Description>env (Anaconda3)</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <LibraryPath>Lib\</LibraryPath>
+      <PathEnvironmentVariable>
+      </PathEnvironmentVariable>
+      <Architecture>Amd64</Architecture>
+    </Interpreter>
+  </ItemGroup>
+  <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="!Exists($(PtvsTargetsFile))" />
+</Project>
