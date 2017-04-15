@@ -11,7 +11,7 @@
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <InterpreterId>{e7076bcd-8449-47d5-8e58-a99d8af4cc95}</InterpreterId>
+    <InterpreterId>{66d14fa4-4cd8-489a-b6cb-f078060b0be7}</InterpreterId>
     <InterpreterVersion>3.5</InterpreterVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
@@ -117,10 +117,10 @@
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
-      <Id>{e7076bcd-8449-47d5-8e58-a99d8af4cc95}</Id>
-      <BaseInterpreter>{128e7662-9ce3-47fe-9982-ecef7c976869}</BaseInterpreter>
+      <Id>{66d14fa4-4cd8-489a-b6cb-f078060b0be7}</Id>
+      <BaseInterpreter>{3718cca6-5bab-49bf-a0ab-1240711c4227}</BaseInterpreter>
       <Version>3.5</Version>
-      <Description>env (Anaconda3)</Description>
+      <Description>env (Anaconda Python)</Description>
       <InterpreterPath>Scripts\python.exe</InterpreterPath>
       <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
       <LibraryPath>Lib\</LibraryPath>
