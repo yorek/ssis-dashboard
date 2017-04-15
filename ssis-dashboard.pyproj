@@ -75,7 +75,7 @@
     <Content Include="dashboard\templates\fragments\package-kpi.html" />
     <Content Include="dashboard\templates\history.html" />
     <Content Include="dashboard\templates\execution-values.html" />
-    <Content Include="dashboard\templates\index - Copy.html" />
+    <Content Include="dashboard\templates\execution-details.html" />
     <Content Include="dashboard\templates\index.html" />
     <Content Include="dashboard\templates\_base.html" />
     <Content Include="LICENSE" />

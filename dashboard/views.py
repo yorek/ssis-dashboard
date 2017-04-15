@@ -11,25 +11,66 @@ from dashboard import app
 version = "0.6.4 (beta)"
 
 # Define routes
+
 @app.route('/')
-def all():
-    return package()
+def packages(folder_name = monitor.all, project_name = monitor.all, status = monitor.all):
+    folder_name = urllib.parse.unquote(folder_name) 
+    project_name = urllib.parse.unquote(project_name) 
+
+    m = monitor()
+    m.folder_name = folder_name
+    m.project_name = project_name
+    m.status = status
+
+    environment = {
+        'version': version,
+        'timestamp': datetime.now(),
+        'project_name': project_name,
+        'folder_name': folder_name,
+        'status': status
+        }
+
+    engine_folders = m.get_engine_folders()
+    engine_projects = m.get_engine_projects()
+    engine_kpi = m.get_engine_kpi()
+    engine_info = m.get_engine_info()
+    execution_statistics = m.get_execution_statistics()
+    package_info = m.get_package_info()
+    package_kpi = m.get_package_kpi()
+    package_list = m.get_package_list()
+    package_executables = m.get_package_executables()
+    package_children = m.get_package_children()
+
+    return render_template(
+        'index.html',
+        environment = environment,
+        engine_folders = engine_folders,
+        engine_projects = engine_projects,
+        engine_info = engine_info,
+        engine_kpi = engine_kpi,
+        execution_statistics = execution_statistics,
+        package_info = package_info,
+        package_kpi = package_kpi,
+        package_list = package_list,
+        package_children = package_children,
+        package_executables = package_executables
+    )
 
 @app.route('/folder/<folder_name>/project/<project_name>/status/<status>')
 def folder_project_status(folder_name, project_name, status):
-    return package(folder_name = folder_name, project_name = project_name, status = status)
+    return packages(folder_name = folder_name, project_name = project_name, status = status)
 
 @app.route('/folder/<folder_name>/project/<project_name>')
 def folder_project(folder_name, project_name):
-    return package(folder_name = folder_name, project_name = project_name)
+    return packages(folder_name = folder_name, project_name = project_name)
 
 @app.route('/folder/<folder_name>')
 def folder(folder_name):
-    return package(folder_name = folder_name)
+    return packages(folder_name = folder_name)
 
-@app.route('/<folder_name>/<project_name>/<status>/<int:execution_id>')
-@app.route('/folder/<folder_name>/project/<project_name>/status/<status>/execution/<int:execution_id>')
-def package(folder_name = monitor.all, project_name = monitor.all, status = monitor.all, execution_id = monitor.all):
+
+@app.route('/execution/<int:execution_id>')
+def execution(execution_id):
     folder_name = urllib.parse.unquote(folder_name) 
     project_name = urllib.parse.unquote(project_name) 
 
@@ -60,7 +101,7 @@ def package(folder_name = monitor.all, project_name = monitor.all, status = moni
     package_children = m.get_package_children()
 
     return render_template(
-        'index.html',
+        'execution-details.html',
         environment = environment,
         engine_folders = engine_folders,
         engine_projects = engine_projects,
