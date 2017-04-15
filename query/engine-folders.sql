@@ -1,1 +1,0 @@
-SELECT folder_id, name, [description] FROM [catalog].folders
