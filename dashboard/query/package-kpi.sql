@@ -10,6 +10,10 @@ WITH cteEID as
 	e.project_name LIKE @projectNamePattern AND
 	(@executionId = -1 AND e.start_time >= DATEADD(HOUR, -@hourspan, SYSDATETIME())) OR (e.execution_id = @executionId)
 ),
+cteA AS
+(
+	SELECT [events] = COUNT(*) FROM [catalog].event_messages em WHERE em.operation_id IN (SELECT c.execution_id FROM cteEID c)
+),
 cteE AS
 (
 	SELECT errors = COUNT(*) FROM [catalog].event_messages em WHERE em.operation_id IN (SELECT c.execution_id FROM cteEID c)  AND em.event_name = 'OnError'
@@ -29,6 +33,6 @@ cteMW AS
 SELECT
 	*
 FROM
-	cteE, cteW, cteDW, cteMW
+	cteA, cteE, cteW, cteDW, cteMW
 OPTION
 	(RECOMPILE)

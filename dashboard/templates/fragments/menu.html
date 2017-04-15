@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">SQL Server Integration Services Dashboard v {{ environment['version'] }}</a>
+            <a class="navbar-brand" href="/">SQL Server Integration Services Dashboard v {{ environment['version'] }}</a>
         </div>
         <div class="navbar-collapse collapse">
 
@@ -35,6 +35,8 @@
 
             <!-- Right nav -->
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="#" onclick="javascript:window.location.reload()">{{ engine_info.server_name }}@{{ environment['timestamp'].strftime('%Y-%m-%d %H:%M') }} <i class="fa fa-refresh"></i></a></li> 
+                <li><a href="#"></a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div><!--/.container -->

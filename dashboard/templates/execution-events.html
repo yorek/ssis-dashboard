@@ -11,7 +11,7 @@
     <!-- Packages Dashboard -->
     <div class="row">
         <div class="col-lg-12">
-            <h2 class="page-header">Package: {{ package_info.folder_name }} \ {{ package_info.project_name }} \ {{ package_info.package_name }} (v.{{ package_info.project_lsn }})</h2>
+            <h2 class="page-header">Package: {{ package_info.folder_name }} \ {{ package_info.project_name }} \ {{ package_info.package_name }} \ {{ environment.execution_id }} (v.{{ package_info.project_lsn }})</h2>
         </div>
     </div>
     <div class="row">
@@ -19,7 +19,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <h2 class="page-header">Details</h2>
+            <h2 class="page-header">Events: {{ environment.event_type }}</h2>
         </div>
     </div>
     <div class="row">
@@ -37,14 +37,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for d in package_details %}
+                        {% for e in package_events %}
                         <tr>
-                            <td>{{ d.message_time }}</td>
-                            <td>{{ d.message }}</td>
-                            <td>{{ d.package_name}}</td>
-                            <td>{{ d.package_path }}</td>
-                            <td>{{ d.subcomponent_name }}</td>
-                            <td>{{ d.execution_path }}</td>
+                            <td>{{ e.message_time }}</td>
+                            <td>{{ e.message }}</td>
+                            <td>{{ e.package_name}}</td>
+                            <td>{{ e.package_path }}</td>
+                            <td>{{ e.subcomponent_name }}</td>
+                            <td>{{ e.execution_path }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -63,7 +63,7 @@
 
             /* Initialize Datatables */
             $('#package-datatable').dataTable({
-                "pageLength": 5,
+                "pageLength": 25,
                 "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
                 "order": [[0, "desc"]],
                 "aoColumnDefs": [{ "bSortable": true, "aTargets": [0] }]

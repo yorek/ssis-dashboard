@@ -10,7 +10,7 @@
     <!-- Package Dashboard -->
     <div class="row">
         <div class="col-lg-12">
-            <h2 class="page-header">Package: {{ package_info.folder_name }} \ {{ package_info.project_name }} \ {{ package_info.package_name }} (v.{{ package_info.project_lsn }})</h2>
+            <h2 class="page-header">Package: {{ package_info.folder_name }} \ {{ package_info.project_name }} \ {{ package_info.package_name }} \ {{ environment.execution_id }} (v.{{ package_info.project_lsn }})</h2>
         </div>
     </div>
     <div class="row">
@@ -91,14 +91,16 @@
                 "pageLength": 10,
                 "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
                 "order": [[0, "asc"], [1, "asc"]],
-                "aoColumnDefs": [{ "bSortable": true, "aTargets": [0] }]               
+                "aoColumnDefs": [{ "bSortable": true, "aTargets": [0] }],
+                "bFilter": false
             });
 
             $('#overrides-datatable').dataTable({
                 "pageLength": 10,
                 "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
                 "order": [[0, "asc"]],
-                "aoColumnDefs": [{ "bSortable": true, "aTargets": [0] }]
+                "aoColumnDefs": [{ "bSortable": true, "aTargets": [0] }],
+                "bFilter": false
             });
 
             $('.dataTables_filter input').attr('placeholder', 'Search')
