@@ -1,6 +1,0 @@
-absolute_import
-is_response_to_head
-assert_header_parsing
-HeaderParsingError
-httplib
-is_fp_closed

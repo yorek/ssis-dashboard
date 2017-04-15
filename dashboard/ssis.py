@@ -77,7 +77,10 @@ class monitor(object):
     def get_execution_statistics(self):
         result = self.__execute_query('executions-statistics.sql',
             False,
-            self.config.hourSpan
+            self.config.hourSpan,
+            self.__get_proper_name_filter(self.folder_name), 
+            self.__get_proper_name_filter(self.project_name), 
+            self.__get_proper_package_status_code(self.status)
             )                
         return result
 

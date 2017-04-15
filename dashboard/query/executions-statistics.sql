@@ -1,4 +1,8 @@
 declare @hourspan int = ?;
+declare @folderNamePattern nvarchar(100) = ?;
+declare @projectNamePattern nvarchar(100) = ?;
+declare @statusFilter int = ?;
+
 with numbers as 
 (
 	select
@@ -22,6 +26,12 @@ with numbers as
 		[catalog].executions e
 	where
 		cast(e.created_time as date) is not null
+	and
+		e.folder_name like @folderNamePattern
+	and
+		e.project_name like @projectNamePattern
+	and
+		(e.[status] = @statusFilter or @statusFilter = 0)
 )
 select
 	c.[calendar_date],

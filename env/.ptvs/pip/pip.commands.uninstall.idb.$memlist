@@ -1,9 +1,0 @@
-UninstallCommand
-absolute_import
-WheelCache
-InstallRequirement
-Command
-parse_requirements
-RequirementSet
-pip
-InstallationError
