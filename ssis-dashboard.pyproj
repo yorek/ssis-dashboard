@@ -11,7 +11,7 @@
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <InterpreterId>{66d14fa4-4cd8-489a-b6cb-f078060b0be7}</InterpreterId>
+    <InterpreterId>{4026c308-3c08-4798-bc6c-68a37b8f5511}</InterpreterId>
     <InterpreterVersion>3.5</InterpreterVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
@@ -68,7 +68,7 @@
     <Content Include="dashboard\static\js\plugins\smartMenu\jquery.smartmenus.min.js" />
     <Content Include="dashboard\static\js\sb-admin-2.js" />
     <Content Include="dashboard\templates\404.html" />
-    <Content Include="dashboard\templates\details.html" />
+    <Content Include="dashboard\templates\execution-events.html" />
     <Content Include="dashboard\templates\fragments\engine-info.html" />
     <Content Include="dashboard\templates\fragments\engine-kpi.html" />
     <Content Include="dashboard\templates\fragments\menu.html" />
@@ -117,10 +117,10 @@
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
-      <Id>{66d14fa4-4cd8-489a-b6cb-f078060b0be7}</Id>
-      <BaseInterpreter>{3718cca6-5bab-49bf-a0ab-1240711c4227}</BaseInterpreter>
+      <Id>{4026c308-3c08-4798-bc6c-68a37b8f5511}</Id>
+      <BaseInterpreter>{128e7662-9ce3-47fe-9982-ecef7c976869}</BaseInterpreter>
       <Version>3.5</Version>
-      <Description>env (Anaconda Python)</Description>
+      <Description>env (Anaconda3)</Description>
       <InterpreterPath>Scripts\python.exe</InterpreterPath>
       <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
       <LibraryPath>Lib\</LibraryPath>
