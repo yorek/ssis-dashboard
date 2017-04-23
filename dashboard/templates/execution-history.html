@@ -37,6 +37,7 @@
                             <th class="cell-small text-center">#</th>
                             <th>Project</th>
                             <th>Package</th>
+                            <th>Environment</th>
                             <th>Start Time</th>
                             <th>Stop Time</th>
                             <th class="cell-small text-center">Elapsed (Min)</th>
@@ -48,6 +49,7 @@
                             <td class="text-center">{{ p.execution_id }}</td>
                             <td>{{ p.project_name }} (v.{{ p.project_lsn }})</td>
                             <td>{{ p.package_name }}{% if p.has_expected_values == True %} <span class="label label-info">Running</span> <span class="label label-warning">({{ p.percent_complete }}% Estimate)</span>{% endif %}</td>
+                            <td>{{ p.environment_name }}</td>
                             <td>{{ p.start_time }}</td>
                             <td>{{ p.end_time }}{% if p.has_expected_values == True %} <span class="label label-warning">Estimate</span>{% endif %}</td>
                             <td>{{ p.elapsed_time_min }}{% if p.has_expected_values == True %} <span class="label label-warning">Estimate</span>{% endif %}</td>
