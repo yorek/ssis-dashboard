@@ -4,10 +4,11 @@ DECLARE @packageNamePattern NVARCHAR(100) = ?;
 
 WITH cte AS 
 (
-	SELECT TOP (15)
+	SELECT TOP (50)
 		e.execution_id, 
 		e.project_name,
 		e.package_name,
+		e.environment_name,
 		e.project_lsn,
 		e.status,
 		e.start_time,
@@ -31,6 +32,7 @@ SELECT
 	execution_id, 
 	project_name,
 	package_name,
+	environment_name,
 	project_lsn,
 	[status],
 	start_time = format(start_time, 'yyyy-MM-dd HH:mm:ss'),
