@@ -41,14 +41,14 @@ class monitor(object):
     package_name =  all
     status =  all
     execution_id = all
-    
-    def __init__(self):        
-        self.config = configuration()      
+
+    def __init__(self):
+        self.config = configuration()
         self.config.hourSpan = app.config["HOUR_SPAN"]
         self.config.connectionString = app.config["CONNECTION_STRING"]["main"]
 
     def get_engine_info(self):
-        result = self.__execute_query('engine-info.sql', True)       
+        result = self.__execute_query('engine-info.sql', True)
         return result
 
     def get_engine_folders(self):
