@@ -7,14 +7,14 @@ from flask import jsonify
 from dashboard.ssis import monitor
 from dashboard import app
 
-# Set app version 
+# Set app version
 version = "0.6.5 (beta)"
 
 # Define routes
 @app.route('/')
-def packages(folder_name = monitor.all, project_name = monitor.all, status = monitor.all):
-    folder_name = urllib.parse.unquote(folder_name) 
-    project_name = urllib.parse.unquote(project_name) 
+def packages(folder_name=monitor.all, project_name=monitor.all, status=monitor.all):
+    folder_name = urllib.parse.unquote(folder_name)
+    project_name = urllib.parse.unquote(project_name)
 
     m = monitor()
     m.folder_name = folder_name
@@ -42,33 +42,33 @@ def packages(folder_name = monitor.all, project_name = monitor.all, status = mon
 
     return render_template(
         'index.html',
-        environment = environment,
-        engine_folders = engine_folders,
-        engine_projects = engine_projects,
-        engine_info = engine_info,
-        engine_kpi = engine_kpi,
-        execution_statistics = execution_statistics,
-        package_info = package_info,
-        package_kpi = package_kpi,
-        package_list = package_list,
-        package_children = package_children,
-        package_executables = package_executables
+        environment=environment,
+        engine_folders=engine_folders,
+        engine_projects=engine_projects,
+        engine_info=engine_info,
+        engine_kpi=engine_kpi,
+        execution_statistics=execution_statistics,
+        package_info=package_info,
+        package_kpi=package_kpi,
+        package_list=package_list,
+        package_children=package_children,
+        package_executables=package_executables
     )
 
 @app.route('/folder/<folder_name>/project/<project_name>/status/<status>')
 def folder_project_status(folder_name, project_name, status):
-    return packages(folder_name = folder_name, project_name = project_name, status = status)
+    return packages(folder_name=folder_name, project_name=project_name, status=status)
 
 @app.route('/folder/<folder_name>/project/<project_name>')
 def folder_project(folder_name, project_name):
-    return packages(folder_name = folder_name, project_name = project_name)
+    return packages(folder_name=folder_name, project_name=project_name)
 
 @app.route('/folder/<folder_name>')
 def folder(folder_name):
-    return packages(folder_name = folder_name)
+    return packages(folder_name=folder_name)
 
 @app.route('/execution/<int:execution_id>')
-def execution(execution_id = 0):
+def execution(execution_id=0):
     m = monitor()
     m.execution_id = execution_id
 
@@ -91,17 +91,17 @@ def execution(execution_id = 0):
 
     return render_template(
         'execution-details.html',
-        environment = environment,
-        engine_folders = engine_folders,
-        engine_projects = engine_projects,
-        engine_info = engine_info,
-        engine_kpi = engine_kpi,
-        execution_statistics = execution_statistics,
-        package_info = package_info,
-        package_kpi = package_kpi,
-        package_list = package_list,
-        package_children = package_children,
-        package_executables = package_executables
+        environment=environment,
+        engine_folders=engine_folders,
+        engine_projects=engine_projects,
+        engine_info=engine_info,
+        engine_kpi=engine_kpi,
+        execution_statistics=execution_statistics,
+        package_info=package_info,
+        package_kpi=package_kpi,
+        package_list=package_list,
+        package_children=package_children,
+        package_executables=package_executables
     )
 
 @app.route('/execution/<int:execution_id>/events/<event_type>')
@@ -124,11 +124,11 @@ def package_events(execution_id, event_type):
 
     return render_template(
         'execution-events.html',
-        environment = environment,
-        engine_info = engine_info,
-        package_info = package_info,
-        package_kpi = package_kpi,
-        package_events = package_events
+        environment=environment,
+        engine_info=engine_info,
+        package_info=package_info,
+        package_kpi=package_kpi,
+        package_events=package_events
     )
 
 @app.route('/execution/<int:execution_id>/values')
@@ -144,30 +144,30 @@ def package_execution_values(execution_id):
 
     engine_info = m.get_engine_info()
     package_info = m.get_package_info()
-    package_kpi = m.get_package_kpi()    
+    package_kpi = m.get_package_kpi()
     package_parameters = m.get_package_details("execution-values")
     package_overrides = m.get_package_details("execution-overrides")
 
     return render_template(
         'execution-values.html',
-        environment = environment,
-        engine_info = engine_info,
-        package_info = package_info,
-        package_kpi = package_kpi,
-        package_parameters = package_parameters,
-        package_overrides = package_overrides
+        environment=environment,
+        engine_info=engine_info,
+        package_info=package_info,
+        package_kpi=package_kpi,
+        package_parameters=package_parameters,
+        package_overrides=package_overrides
     )
 
 @app.route('/history/<folder_name>/project/<project_name>/status/<status>/package/<package_name>')
 def package_history(folder_name, project_name, status, package_name):
-    folder_name = urllib.parse.unquote(folder_name) 
-    project_name = urllib.parse.unquote(project_name) 
-    package_name = urllib.parse.unquote(package_name) 
+    folder_name = urllib.parse.unquote(folder_name)
+    project_name = urllib.parse.unquote(project_name)
+    package_name = urllib.parse.unquote(package_name)
 
     m = monitor()
     m.project_name = project_name
     m.package_name = package_name
-    m.folder_name = folder_name 
+    m.folder_name = folder_name
 
     environment = {
         'version': version,
@@ -186,11 +186,11 @@ def package_history(folder_name, project_name, status, package_name):
 
     return render_template(
         'execution-history.html',
-        environment = environment,
-        engine_info = engine_info,
-        package_info = package_info,
-        package_kpi = package_kpi,
-        package_history = package_history
+        environment=environment,
+        engine_info=engine_info,
+        package_info=package_info,
+        package_kpi=package_kpi,
+        package_history=package_history
     )
 
 #@app.route('/ssis/execution-status', methods = ['GET'])
@@ -230,7 +230,7 @@ def not_found(error):
 
     return render_template(
         '404.html',
-        environment = environment,
-        engine_info = engine_info
+        environment=environment,
+        engine_info=engine_info
     )
 
