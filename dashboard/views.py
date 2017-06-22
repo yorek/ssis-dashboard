@@ -8,7 +8,7 @@ from dashboard.ssis import monitor
 from dashboard import app
 
 # Set app version 
-version = "0.6.4 (beta)"
+version = "0.6.5 (beta)"
 
 # Define routes
 @app.route('/')
