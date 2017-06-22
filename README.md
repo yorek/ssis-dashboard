@@ -1,4 +1,4 @@
-SQL Server Integration Services Dashboard v 0.6.4 Beta
+SQL Server Integration Services Dashboard v 0.6.5 Beta
 =========================================
 
 The purpose of this project is to provide a web-based, user-friendly, useful and nice looking SQL Server Integration Services Dashboard and a set of REST API to monitor execution of SQL Server Integration Services Packages.
@@ -81,9 +81,9 @@ Priority has been put to the web interface. From the web interface the page with
 
 SSIS Dashboard has been built using:
 
-* Python 3.5: https://www.python.org/ 
-* Flask 0.12.1: http://flask.pocoo.org/ 
-* PyODBC 3.0.10: https://github.com/mkleehammer/pyodbc
+* Python 3.6: https://www.python.org/ 
+* Flask 0.12.2: http://flask.pocoo.org/ 
+* PyODBC 4.0.17: https://github.com/mkleehammer/pyodbc
 * SB Admin 2 Template: http://startbootstrap.com/template-overviews/sb-admin-2/
 
 The IDE used is the phenomenal Visual Studio 2013 with the Python addin "Python Tools For Visual Studio"
@@ -93,8 +93,8 @@ https://pytools.codeplex.com/
 ## Installation Procedure
 
 ### Install Python 
-Download Python 3.5 and install using default options from https://www.python.org/ website.
-At the end of the installation process you'll have a `C:\Python35` folder.
+Download Python 3.6 and install using default options from https://www.python.org/ website.
+At the end of the installation process you'll have a `C:\Python36` folder.
 Also the Anaconda distribution is supported.
 
 ### Get SSIS Dashboard Files
@@ -107,7 +107,7 @@ For example store them into
 c:\ssis-dashboard
 ```
 folder.
-	
+
 ### Configure SSIS Dashboard
 All you have to do put the correct connection string in the 
 ```
@@ -123,9 +123,14 @@ c:\<python-install-folder>\Scripts\pip.exe install -r requirements.txt
 ```
 provided that you downloaded the SSIS Dashboard source files into a directory named `ssis-dashboard` in the `C:` drive.
 
-Please note that the above installation steps install the packages in the global catalog. If you are already using Python it's better to create a virtual environment and have the package installed there.
+Please note that the above installation steps install the packages in the global catalog. If you are already using Python it's better to create a virtual environment and have the package installed there (instruction for Windows):
+
+```
+python -m venv env
+env\Script\activate
+```
 	
-### Run SSIS Dashboard
+### Run SSIS Dashboard (deprecated)
 After pip has finished its work, it's time to run the web app.  Again it's as easy as doing this:
 ```
 cd c:\ssis-dashboard
@@ -145,6 +150,23 @@ cd c:\ssis-dashboard
 c:\<python-install-folder>\python.exe runserver.py
 ```
 
+### Run SSIS Dashboard
+Since Flask 0.12 the preferred method to run Flask application is to use ```flask``` command:
 
+```
+set FLASK_APP=dashboard/__init__.py
+flask run
+```
 
+in this case the server will listen on port 5000 by default:
+```
+http://locahost:5000/
+```
+
+for more information, like 
+- enabling Debug mode
+- changing default tcp port
+- allowing the app to serve different hostname than "localhost"
+
+please read the [Flask Quickstart](http://flask.pocoo.org/docs/0.12/quickstart/)
 	
