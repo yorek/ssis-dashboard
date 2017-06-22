@@ -9,3 +9,6 @@ FROM
 	[catalog].projects p
 INNER JOIN
 	[catalog].folders f ON p.folder_id = f.folder_id
+ORDER BY	
+	f.[name],
+	p.[name]
