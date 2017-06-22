@@ -9,6 +9,12 @@ Installation procedure is here: https://github.com/yorek/ssis-dashboard#installa
 
 ## Release Notes
 
+### v 0.6.5 Beta
+
+* Moved to Roboto font for better readability
+* Navigation menu correctly sort items (Issue #19)
+* Started using pylint to have cleaner code
+
 ### v 0.6.4 Beta
 
 * Updated to Python 3
