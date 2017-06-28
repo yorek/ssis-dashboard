@@ -302,3 +302,4 @@ docs/_build/
 
 # PyBuilder
 target/
+/config.cfg
