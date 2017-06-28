@@ -45,6 +45,7 @@ class monitor(object):
     def __init__(self):
         self.config = configuration()
         self.config.hourSpan = app.config["HOUR_SPAN"]
+        self.config.asOfDate = app.config["AS_OF_DATE"]
         self.config.connectionString = app.config["CONNECTION_STRING"]["main"]
 
     def get_engine_info(self):
@@ -64,6 +65,7 @@ class monitor(object):
             'engine-kpi.sql', 
             False,
             self.config.hourSpan, 
+            self.config.asOfDate,
             self.__get_proper_name_filter(self.folder_name),
             self.__get_proper_name_filter(self.project_name)
             )
@@ -79,6 +81,7 @@ class monitor(object):
         result = self.__execute_query('executions-statistics.sql',
             False,
             self.config.hourSpan,
+            self.config.asOfDate,
             self.__get_proper_name_filter(self.folder_name), 
             self.__get_proper_name_filter(self.project_name), 
             self.__get_proper_package_status_code(self.status)
@@ -90,6 +93,7 @@ class monitor(object):
             'package-kpi.sql', 
             True,
             self.config.hourSpan, 
+            self.config.asOfDate,
             self.__get_proper_name_filter(self.folder_name), 
             self.__get_proper_name_filter(self.project_name), 
             self.__get_proper_execution_id(self.execution_id)
@@ -101,6 +105,7 @@ class monitor(object):
             'package-list.sql', 
             False,
             self.config.hourSpan, 
+            self.config.asOfDate, 
             self.__get_proper_name_filter(self.folder_name), 
             self.__get_proper_name_filter(self.project_name), 
             self.__get_proper_package_status_code(self.status)

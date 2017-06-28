@@ -1,14 +1,17 @@
 DECLARE @hourspan INT = ?;
+DECLARE @asOfDate DATETIME2 = NULLIF(?, 'NOW');
 DECLARE @folderNamePattern NVARCHAR(100) = ?;
 DECLARE @projectNamePattern NVARCHAR(100) = ?;
 DECLARE @executionId BIGINT = ?;
+
+SET @asOfDate = ISNULL(@asOfDate, SYSDATETIME());
 
 WITH cteEID as
 (
 	SELECT execution_id FROM [catalog].executions e WHERE 
 	e.folder_name LIKE @folderNamePattern AND
 	e.project_name LIKE @projectNamePattern AND
-	(@executionId = -1 AND e.start_time >= DATEADD(HOUR, -@hourspan, SYSDATETIME())) OR (e.execution_id = @executionId)
+	(@executionId = -1 AND e.start_time >= DATEADD(HOUR, -@hourspan, @asOfDate)) OR (e.execution_id = @executionId)
 ),
 cteA AS
 (

@@ -1,7 +1,10 @@
-declare @hourspan int = ?;
-declare @folderNamePattern nvarchar(100) = ?;
-declare @projectNamePattern nvarchar(100) = ?;
-declare @statusFilter int = ?;
+DECLARE @hourspan INT = ?;
+DECLARE @asOfDate DATETIME2 = NULLIF(?, 'NOW');
+DECLARE @folderNamePattern NVARCHAR(100) = ?;
+DECLARE @projectNamePattern NVARCHAR(100) = ?;
+DECLARE @statusFilter INT = ?;
+
+SET @asOfDate = ISNULL(@asOfDate, SYSDATETIME());
 
 with numbers as 
 (
@@ -12,7 +15,7 @@ with numbers as
 ), calendar as
 (
 	select distinct 
-		cast(dateadd(hour, n * -1, sysdatetime()) as date) as calendar_date
+		cast(dateadd(hour, n * -1, @asOfDate) as date) as calendar_date
 	from
 		numbers
 	where 

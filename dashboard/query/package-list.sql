@@ -1,7 +1,10 @@
-declare @hourspan int = ?;
-declare @folderNamePattern nvarchar(100) = ?;
-declare @projectNamePattern nvarchar(100) = ?;
-declare @statusFilter int = ?;
+DECLARE @hourspan INT = ?;
+DECLARE @asOfDate DATETIME2 = NULLIF(?, 'NOW');
+DECLARE @folderNamePattern NVARCHAR(100) = ?;
+DECLARE @projectNamePattern NVARCHAR(100) = ?;
+DECLARE @statusFilter INT = ?;
+
+SET @asOfDate = ISNULL(@asOfDate, SYSDATETIME());
 
 with cteWE as
 (
@@ -61,7 +64,7 @@ where
 and
 	e.project_name like @projectNamePattern
 and
-	e.created_time >= dateadd(hour, -@hourspan, sysdatetime())
+	e.created_time >= dateadd(hour, -@hourspan, @asOfDate)
 and
 	(e.[status] = @statusFilter or @statusFilter = 0)
 order by 
