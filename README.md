@@ -1,4 +1,4 @@
-SQL Server Integration Services Dashboard v 0.6.5 Beta
+SQL Server Integration Services Dashboard v 0.6.6 Beta
 =========================================
 
 The purpose of this project is to provide a web-based, user-friendly, useful and nice looking SQL Server Integration Services Dashboard and a set of REST API to monitor execution of SQL Server Integration Services Packages.
@@ -8,6 +8,11 @@ The purpose of this project is to provide a web-based, user-friendly, useful and
 Installation procedure is here: https://github.com/yorek/ssis-dashboard#installation-procedure
 
 ## Release Notes
+
+### v 0.6.6 Beta
+
+* Improved configuration management. Now confguration is read from config.cfg, which is NOT included in the GitHub repository. This is a step need to make easier to download updted version directly from GitHub. 
+* Added support for Google Analytics
 
 ### v 0.6.5 Beta
 
@@ -109,11 +114,17 @@ c:\ssis-dashboard
 folder.
 
 ### Configure SSIS Dashboard
-All you have to do put the correct connection string in the 
+All you have to do put the correct connection string and values in the 
 ```
-config.py 
+config.cfg
 ```
-file. That's it.
+file. The file needs to be created the very first time. To do that just create an empty text file in root folder and
+then copy the content from ```dashboard/config.py``` and put the configuration values correct for you. Chances are that you only need to set the correct connecting string: all the other values may be left as you find them.
+If you are using Google Analytics and want to track how the dashboard is used, you can put the Google Analytics code in the related configuration option, for example:
+
+```
+GOOGLE_ANALYTICS = 'UA-01234567-1'
+```
 
 ### Install Requirements
 In order for SSIS Dashboard to run, the micro-framework Flask and PyODBC have to be installed. It's easy as doing this
@@ -126,10 +137,17 @@ provided that you downloaded the SSIS Dashboard source files into a directory na
 Please note that the above installation steps install the packages in the global catalog. If you are already using Python it's better to create a virtual environment and have the package installed there (instruction for Windows):
 
 ```
+cd c:\ssis-dashboard
 python -m venv env
 env\Script\activate
 ```
-	
+
+and then proceeed to install package using the usual pip command:
+
+```
+c:\<python-install-folder>\Scripts\pip.exe install -r requirements.txt
+```
+
 ### Run SSIS Dashboard (deprecated)
 After pip has finished its work, it's time to run the web app.  Again it's as easy as doing this:
 ```
