@@ -75,6 +75,7 @@
     <Content Include="dashboard\templates\execution-history.html" />
     <Content Include="dashboard\templates\execution-values.html" />
     <Content Include="dashboard\templates\execution-details.html" />
+    <Content Include="dashboard\templates\create-config.html" />
     <Content Include="dashboard\templates\index.html" />
     <Content Include="dashboard\templates\_base.html" />
     <Content Include="LICENSE" />

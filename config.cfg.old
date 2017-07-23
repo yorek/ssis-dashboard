@@ -1,0 +1,9 @@
+AZURE = True
+DEBUG = True
+CONNECTION_STRING = {
+                    "main": "DRIVER={SQL Server};SERVER=dm-sql-test.database.windows.net,1433;UID=dmauri;DATABASE=ssis-dashboard-demo;PWD=Passw0rd!",
+                    }
+HOUR_SPAN = 360
+AS_OF_DATE = '20170420'
+PORT = 5555
+GOOGLE_ANALYTICS = 'UA-98469690-1'

@@ -1,18 +1,21 @@
 from datetime import datetime
 import urllib.parse
+import os
 
-from flask import render_template
-from flask import make_response
-from flask import jsonify
+from flask import render_template, make_response, jsonify, redirect, url_for
 from dashboard.ssis import monitor
-from dashboard import app
+from dashboard import app, configurationNeeded, fileConfig
 
 # Set app version
-version = "0.6.6 (beta)"
+version = "0.6.7 (beta)"
 
 # Define routes
 @app.route('/')
-def packages(folder_name=monitor.all, project_name=monitor.all, status=monitor.all):
+def packages(folder_name=monitor.all, project_name=monitor.all, status=monitor.all): 
+    print(configurationNeeded)
+    if (configurationNeeded == True):
+        return redirect(url_for('configure'))
+
     folder_name = urllib.parse.unquote(folder_name)
     project_name = urllib.parse.unquote(project_name)
 
@@ -216,6 +219,32 @@ def package_history(folder_name, project_name, status, package_name):
 #@app.route('/sample', methods = ['GET'])
 #def get_sample():
 #    return jsonify({'result': 123})
+
+@app.route('/configure', methods=['GET', 'POST'])
+def configure():
+    environment = {
+        'version': version,
+        'timestamp': datetime.now()
+        }
+
+    defaultConfig = ""
+
+    if (os.path.isfile(fileConfig) == False):
+        with open('dashboard\config.py', 'r') as f:
+            defaultConfig = f.read()
+
+        with open(fileConfig, 'w') as f:
+            f.write(defaultConfig)
+
+    customConfig = ""
+    with open(fileConfig, 'r') as f:
+        customConfig = f.read()
+
+    configuration = {
+       'text': customConfig
+        }
+
+    return render_template('create-config.html', environment=environment, configuration=configuration)
 
 @app.errorhandler(404)
 def not_found(error):
