@@ -43,10 +43,10 @@
                     <h2>Configuration Editor<br /></h2>
                 </div>
             </div>
-            <form action="" method="post" name="configure">
+            <form action="" method="post">
                 <div class="row">
                     <div class="col-lg-12">
-                        <textarea class="form-control" rows="30">{{ configuration['text'] | safe }}</textarea>
+                        <textarea class="form-control" name="configure" rows="30">{{ configuration['text'] | safe }}</textarea>
                     </div>
                 </div>
                 <div class="row">

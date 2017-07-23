@@ -2,7 +2,7 @@ from datetime import datetime
 import urllib.parse
 import os
 
-from flask import render_template, make_response, jsonify, redirect, url_for
+from flask import render_template, make_response, jsonify, redirect, url_for, current_app, request
 from dashboard.ssis import monitor
 from dashboard import app, configurationNeeded, fileConfig
 
@@ -227,16 +227,26 @@ def configure():
         'timestamp': datetime.now()
         }
 
-    defaultConfig = ""
+    customConfig = ""
 
-    if (os.path.isfile(fileConfig) == False):
-        with open('dashboard\config.py', 'r') as f:
-            defaultConfig = f.read()
+    if request.method == 'GET':
+        defaultConfig = ""
+
+        if (os.path.isfile(fileConfig) == False):
+            with open('dashboard\config.py', 'r') as f:
+                defaultConfig = f.read()
+
+            with open(fileConfig, 'w') as f:
+                f.write(defaultConfig)
+
+    if request.method == 'POST':
+        customConfig = request.form['configure']
 
         with open(fileConfig, 'w') as f:
-            f.write(defaultConfig)
+            f.write(customConfig)
 
-    customConfig = ""
+        current_app.config.from_pyfile('..\\' + fileConfig)
+
     with open(fileConfig, 'r') as f:
         customConfig = f.read()
 
@@ -244,7 +254,7 @@ def configure():
        'text': customConfig
         }
 
-    return render_template('create-config.html', environment=environment, configuration=configuration)
+    return render_template('configuration.html', environment=environment, configuration=configuration)
 
 @app.errorhandler(404)
 def not_found(error):

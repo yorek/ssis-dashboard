@@ -1,4 +1,4 @@
-SQL Server Integration Services Dashboard v 0.6.6 Beta
+SQL Server Integration Services Dashboard v 0.6.7 Beta
 =========================================
 
 The purpose of this project is to provide a web-based, user-friendly, useful and nice looking SQL Server Integration Services Dashboard and a set of REST API to monitor execution of SQL Server Integration Services Packages.
@@ -8,6 +8,11 @@ The purpose of this project is to provide a web-based, user-friendly, useful and
 Installation procedure is here: https://github.com/yorek/ssis-dashboard#installation-procedure
 
 ## Release Notes
+
+### v 0.6.7 Beta
+
+* Added redirection to new ```configuration``` page at the first run (when ```config.cfg``` is not detected) to allow the end user to configure the dashboard
+* Added ```configuration``` page
 
 ### v 0.6.6 Beta
 
