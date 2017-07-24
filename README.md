@@ -11,8 +11,7 @@ Installation procedure is here: https://github.com/yorek/ssis-dashboard#installa
 
 ### v 0.6.7 Beta
 
-* Added redirection to new ```configuration``` page at the first run (when ```config.cfg``` is not detected) to allow the end user to configure the dashboard
-* Added ```configuration``` page
+* Added ```configure``` page to edit configuration online. This is very useful when deploying on Azure.
 
 ### v 0.6.6 Beta
 
