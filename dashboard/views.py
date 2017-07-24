@@ -1,6 +1,7 @@
 from datetime import datetime
 import urllib.parse
 import os
+import io
 
 from flask import render_template, make_response, jsonify, redirect, url_for, current_app, request
 from dashboard.ssis import monitor
@@ -12,9 +13,6 @@ version = "0.6.7 (beta)"
 # Define routes
 @app.route('/')
 def packages(folder_name=monitor.all, project_name=monitor.all, status=monitor.all): 
-    print(configurationNeeded)
-    if (configurationNeeded == True):
-        return redirect(url_for('configure'))
 
     folder_name = urllib.parse.unquote(folder_name)
     project_name = urllib.parse.unquote(project_name)
@@ -230,31 +228,29 @@ def configure():
     customConfig = ""
 
     if request.method == 'GET':
-        defaultConfig = ""
+        fileToRead = fileConfig
 
-        if (os.path.isfile(fileConfig) == False):
-            with open('dashboard\config.py', 'r') as f:
-                defaultConfig = f.read()
+        if (os.path.isfile(fileToRead) == False):
+            fileToRead = 'config.tpl'
 
-            with open(fileConfig, 'w') as f:
-                f.write(defaultConfig)
+        with io.open(fileToRead, 'r', newline='') as f:
+            customConfig = f.read()
+            
+        configuration = {
+            'text': customConfig
+            }
+
+        return render_template('configuration.html', environment=environment, configuration=configuration)
 
     if request.method == 'POST':
         customConfig = request.form['configure']
 
-        with open(fileConfig, 'w') as f:
+        with io.open(fileConfig, 'w', newline='') as f:
             f.write(customConfig)
 
         current_app.config.from_pyfile('..\\' + fileConfig)
 
-    with open(fileConfig, 'r') as f:
-        customConfig = f.read()
-
-    configuration = {
-       'text': customConfig
-        }
-
-    return render_template('configuration.html', environment=environment, configuration=configuration)
+        return redirect('/')
 
 @app.errorhandler(404)
 def not_found(error):

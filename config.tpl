@@ -1,15 +1,5 @@
-# Show "Fork Me on GitHub" Banner?
-GITHUB_LINK = False
-
 # Set Flask into Debug mode
-DEBUG = True
-
-# TCP Port when running localhost
-PORT = 5555
-
-# Leave it to 'NOW' to see current data, otherwise set it to a specific 
-# date to freeze queries to that point in time
-AS_OF_DATE = 'NOW'
+DEBUG = False
 
 # Connectiong string to SSISDB database
 CONNECTION_STRING = {
