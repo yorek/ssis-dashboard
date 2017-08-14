@@ -21,3 +21,6 @@ HOUR_SPAN = 360
 
 # Google analytics code to keep track of site usage. Eg: 'UA-12345678-1'
 GOOGLE_ANALYTICS = None
+
+# Automatically refresh the page (-1 to disable autorefresh)
+AUTOREFRESH = 30
