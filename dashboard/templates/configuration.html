@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A SQL Server Integration Services monitoring dashboard">
 
-    <title>SQL Server Integration Services Dashboard v {{ environment['version'] }}</title>
+    <title>SQL Server Integration Services Dashboard v {{ environment['version'] }} | Configuration</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
@@ -32,33 +33,41 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
 </head>
+
 <body>
-    <div id="wrapper">
-        <!-- Page Content -->
-        <div id="page-wrapper">
-            <!-- Configuration Editor -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Configuration Editor<br /></h2>
+            </div>
+        </div>
+        <form action="" method="post">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>Configuration Editor<br /></h2>
+                    <textarea name="editor">{{ configuration['text'] }}</textarea>
+                    <div id="editor"></div>
                 </div>
             </div>
-            <form action="" method="post">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <textarea class="form-control" name="configure" rows="30">{{ configuration['text'] }}</textarea>
-                    </div>
+            <div class="row">
+                <div class="col-lg-12">&nbsp;</div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                     <input class="btn btn-danger" type="reset" value="Cancel">
+                    <input class="btn btn-success" type="submit" value="Save">
                 </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <input class="btn btn-danger" type="reset" value="Cancel">
-                    </div>
-                    <div class="col-lg-6">
-                        <input class="btn btn-success" type="submit" value="Save">
-                    </div>
-                </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 
     <!-- jQuery Version -->
@@ -73,5 +82,22 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="/static/js/sb-admin-2.js"></script>
+
+    <!-- ACE Editor -->
+    <script src="/static/js/ace/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/monokai");
+        editor.getSession().setMode("ace/mode/python");
+        
+        var textarea = $('textarea[name="editor"]').hide();
+        editor.getSession().setValue(textarea.val());
+        /*
+        editor.getSession().on('change', function(){
+            textarea.val(editor.getSession().getValue());
+        });
+        */
+    </script>
 </body>
+
 </html>

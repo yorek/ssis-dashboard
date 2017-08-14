@@ -12,7 +12,7 @@ version = "0.6.7 (beta)"
 
 # Define routes
 @app.route('/')
-def packages(folder_name=monitor.all, project_name=monitor.all, status=monitor.all): 
+def packages(folder_name=monitor.all, project_name=monitor.all, status=monitor.all):
 
     folder_name = urllib.parse.unquote(folder_name)
     project_name = urllib.parse.unquote(project_name)
@@ -230,20 +230,22 @@ def configure():
     if request.method == 'GET':
         fileToRead = fileConfig
 
-        if (os.path.isfile(fileToRead) == False):
+        if os.path.isfile(fileToRead) == False:
             fileToRead = 'config.tpl'
 
         with io.open(fileToRead, 'r', newline='') as f:
             customConfig = f.read()
-            
+
         configuration = {
             'text': customConfig
             }
 
-        return render_template('configuration.html', environment=environment, configuration=configuration)
+        return render_template('configuration.html',
+                               environment=environment,
+                               configuration=configuration)
 
     if request.method == 'POST':
-        customConfig = request.form['configure']
+        customConfig = request.form['editor']
 
         with io.open(fileConfig, 'w', newline='') as f:
             f.write(customConfig)
@@ -256,7 +258,7 @@ def configure():
 def not_found(error):
     m = monitor()
 
-    engine_info = m.get_engine_info()
+    engine_info = 'N/A'
 
     environment = {
         'version': version,
@@ -268,4 +270,3 @@ def not_found(error):
         environment=environment,
         engine_info=engine_info
     )
-
