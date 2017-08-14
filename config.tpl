@@ -3,7 +3,7 @@ DEBUG = False
 
 # Connectiong string to SSISDB database
 CONNECTION_STRING = {
-                    "main": "DRIVER={SQL Server};SERVER=localhost;DATABASE=SSISDB;UID=;PWD=",
+                    "main": "DRIVER={SQL Server};SERVER=localhost;DATABASE=SSISDB;UID=;PWD="
                     }
 
 # How many hours back in time the queries should look for data. Default if 15 days, or 360 hours
