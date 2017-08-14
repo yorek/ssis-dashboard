@@ -4,7 +4,6 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="refresh" content="30">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A SQL Server Integration Services monitoring dashboard">
 
@@ -41,6 +40,10 @@
             bottom: 0;
             left: 0;
         }
+
+        .editor-block {
+            height:600px;
+        }
     </style>
 </head>
 
@@ -52,10 +55,10 @@
             </div>
         </div>
         <form action="" method="post">
-            <div class="row">
+            <div class="row editor-block" >
                 <div class="col-lg-12">
-                    <textarea name="editor">{{ configuration['text'] }}</textarea>
-                    <div id="editor"></div>
+                    <textarea name="editor"></textarea>
+                    <div id="editor" class="editor-block">{{ configuration['text'] }}</div>
                 </div>
             </div>
             <div class="row">
@@ -86,17 +89,17 @@
     <!-- ACE Editor -->
     <script src="/static/js/ace/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
     <script>
-        var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/monokai");
-        editor.getSession().setMode("ace/mode/python");
-        
-        var textarea = $('textarea[name="editor"]').hide();
-        editor.getSession().setValue(textarea.val());
-        /*
-        editor.getSession().on('change', function(){
-            textarea.val(editor.getSession().getValue());
+        $(function() {
+            var editor = ace.edit("editor");
+            editor.setTheme("ace/theme/chrome");
+            editor.setShowPrintMargin(false);
+            editor.getSession().setMode("ace/mode/python");
+
+            var textarea = $('textarea[name="editor"]').hide();
+            editor.getSession().on('change', function(){
+                textarea.val(editor.getValue());                
+            });            
         });
-        */
     </script>
 </body>
 

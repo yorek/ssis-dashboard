@@ -232,7 +232,9 @@ def configure():
 
         if os.path.isfile(fileToRead) == False:
             fileToRead = 'config.tpl'
-
+        else:
+            return render_template('configuration-already-set.html', environment=environment)
+    
         with io.open(fileToRead, 'r', newline='') as f:
             customConfig = f.read()
 
@@ -255,11 +257,7 @@ def configure():
         return redirect('/')
 
 @app.errorhandler(404)
-def not_found(error):
-    m = monitor()
-
-    engine_info = 'N/A'
-
+def not_found(error): 
     environment = {
         'version': version,
         'timestamp': datetime.now()
@@ -267,6 +265,5 @@ def not_found(error):
 
     return render_template(
         '404.html',
-        environment=environment,
-        engine_info=engine_info
+        environment=environment
     )

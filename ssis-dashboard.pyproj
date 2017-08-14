@@ -67,6 +67,7 @@
     <Content Include="dashboard\static\js\plugins\smartMenu\addons\keyboard\jquery.smartmenus.keyboard.min.js" />
     <Content Include="dashboard\static\js\plugins\smartMenu\jquery.smartmenus.min.js" />
     <Content Include="dashboard\static\js\sb-admin-2.js" />
+    <Content Include="dashboard\templates\configuration-already-set.html" />
     <Content Include="dashboard\templates\404.html" />
     <Content Include="dashboard\templates\execution-events.html" />
     <Content Include="dashboard\templates\fragments\engine-info.html" />
@@ -85,7 +86,6 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="config.cfg" />
     <Compile Include="dashboard\config.py" />
     <Compile Include="dashboard\filters.py" />
     <Compile Include="dashboard\processors.py" />
