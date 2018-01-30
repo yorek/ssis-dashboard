@@ -17,7 +17,7 @@ envConfigExists = os.getenv(envConfig) != None
 fileConfigExists = os.path.isfile('config.cfg')
 
 if envConfigExists == False and fileConfigExists == True:
-    os.environ[envConfig] = '..\\' + fileConfig
+    os.environ[envConfig] = os.path.join('..','','') + fileConfig
 
 app.config.from_envvar(envConfig)
 
