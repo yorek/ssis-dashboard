@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  ssis-dashboard:
+    image: ssis-dashboard
+    build: .
+    ports:
+      - 5000:5000

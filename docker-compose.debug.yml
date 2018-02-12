@@ -1,0 +1,10 @@
+version: '2.1'
+
+services:
+  ssis-dashboard:
+    image: ssis-dashboard
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
