@@ -19,7 +19,8 @@ fileConfigExists = os.path.isfile('config.cfg')
 if envConfigExists == False and fileConfigExists == True:
     os.environ[envConfig] = os.path.join('..','','') + fileConfig
 
-app.config.from_envvar(envConfig)
+if envConfigExists == True
+    app.config.from_envvar(envConfig)
 
 from dashboard.views import *
 from dashboard.processors import *
