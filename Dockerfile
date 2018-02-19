@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-LABEL name="ssis-dashboard" version="0.6.6" 
+LABEL name="ssis-dashboard" version="0.6.6" maintainer="Davide Mauri <info@davidemauri.it>"
 
 # apt-get and system utilities
 RUN apt-get update && apt-get install -y \
@@ -39,5 +39,6 @@ COPY requirements.txt ./
 RUN pip3 install --no-cache-dir -r requirements.txt
 COPY . .
 ENV FLASK_APP=dashboard/__init__.py LC_ALL=C.UTF-8 LANG=C.UTF-8
+EXPOSE 5000
 CMD [ "flask", "run", "--host=0.0.0.0" ]
 
