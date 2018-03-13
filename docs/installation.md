@@ -1,7 +1,7 @@
 # Installation Procedure
 
 ## Readme First! 
-If you're not confident with Python, or don't what to install it on your machine, or you just prefer a ready-to-go solution, you can use the docker image as described [here](docker.md)
+If you're not confident with Python, or don't what to install it on your machine, or you just prefer a ready-to-go solution, you can use the docker image as described [here](docker-support.md).
 
 ## Install Python 
 Download Python 3.6 and install using default options from https://www.python.org/ website.

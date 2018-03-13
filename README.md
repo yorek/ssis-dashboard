@@ -15,11 +15,10 @@ The purpose of this project is to provide a web-based, user-friendly, useful and
 
 ## Documentation
 
-* [Install, Configure & Run](docs/installation.md)
-* [Docker Support](docs/docker.md)
+* [Install, Configure & Run](docs/installation.md)    
+* [Install, Configure & Run on Docker](docs/docker-support.md)
 * [Release Notes](docs/release-notes.md)
 * [Roadmap](docs/roadmap.md)
-* [Contribute](docs/contribute.md)
 
 ## Used Platforms & Tools 
 
