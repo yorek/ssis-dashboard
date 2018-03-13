@@ -1,7 +1,7 @@
 DECLARE @executionId BIGINT = ?;
 
 SELECT 
-	message_time,
+	CAST(message_time AS VARCHAR(100)) as message_time,,
 	[message],
 	package_name,
 	package_path,

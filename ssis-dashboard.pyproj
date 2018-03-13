@@ -77,6 +77,9 @@
     <Content Include="dashboard\templates\execution-details.html" />
     <Content Include="dashboard\templates\index.html" />
     <Content Include="dashboard\templates\_base.html" />
+    <Content Include="docker-compose.debug.yml" />
+    <Content Include="docker-compose.yml" />
+    <Content Include="Dockerfile" />
     <Content Include="LICENSE" />
     <Content Include="README.md" />
     <Content Include="requirements.txt" />

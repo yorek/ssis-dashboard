@@ -206,7 +206,6 @@ class monitor(object):
         return result
 
     def __get_proper_package_status_code(self, status):
-        result = 0
         status_descriptions = {}
         for k in self.package_status_codes.keys():
             status_descriptions[self.package_status_codes[k]] = k 
