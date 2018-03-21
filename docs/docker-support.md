@@ -49,5 +49,5 @@ docker run -d -p 5000:5000 --name ssis-dashboard -e DASHBOARD_CONFIG=config.cfg 
 Once the container is running you can connect to the dashboard via the following url:
 
 ```
-http://locahost:5000/
+http://localhost:5000/
 ```
