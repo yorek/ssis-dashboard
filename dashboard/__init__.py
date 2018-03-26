@@ -19,7 +19,7 @@ fileConfigExists = os.path.isfile('config.cfg')
 if envConfigExists == False and fileConfigExists == True:
     os.environ[envConfig] = os.path.join('..','','') + fileConfig
 
-if envConfigExists == True:
+if fileConfigExists == True:
     print("Loading configuration from: " + envConfig + " > " + os.environ[envConfig])
     app.config.from_envvar(envConfig)
 
