@@ -3,6 +3,7 @@ DECLARE @asOfDate DATETIME2 = NULLIF(?, 'NOW');
 DECLARE @folderNamePattern NVARCHAR(100) = ?;
 DECLARE @projectNamePattern NVARCHAR(100) = ?;
 DECLARE @statusFilter INT = ?;
+DECLARE @executionCount INT = ?;
 
 SET @asOfDate = ISNULL(@asOfDate, SYSDATETIME());
 
@@ -40,7 +41,7 @@ cteLoglevel as
 	where
 		parameter_name = 'LOGGING_LEVEL'
 )
-select top 15
+select top (@executionCount)
 	e.execution_id, 
 	e.project_name,
 	e.package_name,

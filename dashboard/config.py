@@ -18,3 +18,5 @@ AS_OF_DATE = 'NOW'
 # Time range to display. Data will be shown from AS_OF_DATE - HOUR_SPAN value to AS_OF_DATE.
 HOUR_SPAN = 360
 
+# How many of the past executions should we show on the dashboard?
+EXECUTION_COUNT=1000
