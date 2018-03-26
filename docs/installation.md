@@ -64,7 +64,7 @@ flask run --host=0.0.0.0
 
 in this case the server will listen on port 5000 by default:
 ```
-http://locahost:5000/
+http://localhost:5000/
 ```
 
 for more information, like 
@@ -84,7 +84,7 @@ c:\<python-install-folder>\python.exe runserver.py
 ```
 now you can open your preferred browser and point to 
 ```
-http://locahost:5555/
+http://localhost:5555/
 ```
 and voilà, SSIS Dashboard running for you.
 
