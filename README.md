@@ -1,4 +1,4 @@
-SQL Server Integration Services Dashboard v 0.6.7 Beta
+SQL Server Integration Services Dashboard v 0.6.8 Beta
 =========================================
 
 The purpose of this project is to provide a web-based, user-friendly, useful and nice looking SQL Server Integration Services Dashboard and a set of REST API to monitor execution of SQL Server Integration Services Packages.
@@ -29,4 +29,4 @@ SSIS Dashboard has been built using:
 * PyODBC 4.0.17: https://github.com/mkleehammer/pyodbc
 * SB Admin 2 Template: http://startbootstrap.com/template-overviews/sb-admin-2/
 
-The IDE used to build the project is Visual Studio 2017 (that's why you can see the `runserver.py` file), though now I'm also using Visual Studio Code  
+The IDE used to build the project is Visual Studio 2017 (that's why you can see the `runserver.py` file), though now I'm also using Visual Studio Code
