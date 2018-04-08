@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta http-equiv="refresh" content="30">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">	
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A SQL Server Integration Services monitoring dashboard">
 
@@ -91,5 +90,28 @@
 
     <!-- Page-Specific JavaScript -->
     {% block pagejs %}{% endblock %}
+
+    <script lang="JavaScript">
+
+    var timeOut;
+
+    function reloadPage() {
+        timeOut = setTimeout(function() { 
+            location.reload();
+        }, 30000);
+    }
+
+    $(function() {       
+        reloadPage();
+
+        $(document).click(function(e) {
+            clearTimeout(timeOut);
+            timeOut = reloadPage();
+        });
+    });
+
+
+
+    </script>
 </body>
 </html>
