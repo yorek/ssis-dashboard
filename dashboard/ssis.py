@@ -46,6 +46,7 @@ class monitor(object):
         self.config = configuration()
         self.config.hourSpan = app.config["HOUR_SPAN"]
         self.config.asOfDate = app.config["AS_OF_DATE"]
+        self.config.executionCount = app.config["EXECUTION_COUNT"]
         self.config.connectionString = app.config["CONNECTION_STRING"]["main"]
 
     def get_engine_info(self):
@@ -104,11 +105,12 @@ class monitor(object):
         result = self.__execute_query(
             'package-list.sql', 
             False,
-            self.config.hourSpan, 
-            self.config.asOfDate, 
-            self.__get_proper_name_filter(self.folder_name), 
-            self.__get_proper_name_filter(self.project_name), 
-            self.__get_proper_package_status_code(self.status)
+            self.config.hourSpan,
+            self.config.asOfDate,
+            self.__get_proper_name_filter(self.folder_name),
+            self.__get_proper_name_filter(self.project_name),
+            self.__get_proper_package_status_code(self.status),
+            self.config.executionCount
             )
 
         for r in result:
