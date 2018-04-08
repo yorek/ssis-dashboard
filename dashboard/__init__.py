@@ -16,9 +16,13 @@ fileConfig = 'config.cfg'
 envConfigExists = os.getenv(envConfig) != None
 fileConfigExists = os.path.isfile('config.cfg')
 
+# If no configuration specific via environment variable
+# use the local configuration file, if that exists
 if envConfigExists == False and fileConfigExists == True:
     os.environ[envConfig] = os.path.join('..','','') + fileConfig
+    envConfigExists = True
 
+# Load the configuration file specified in the environment variable
 if envConfigExists == True:
     print("Loading configuration from: " + envConfig + " > " + os.environ[envConfig])
     app.config.from_envvar(envConfig)
