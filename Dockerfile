@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-LABEL name="ssis-dashboard" version="0.6.7" maintainer="Davide Mauri <info@davidemauri.it>"
+LABEL name="ssis-dashboard" version="0.6.8" maintainer="Davide Mauri <info@davidemauri.it>"
 
 # apt-get and system utilities
 RUN apt-get update && apt-get install -y \
